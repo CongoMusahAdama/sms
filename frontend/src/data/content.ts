@@ -249,7 +249,7 @@ export const sponsorsAndPartners = [
   { name: 'Evergreen Band Movement', logo: '/assets/hero/partner.png' },
   { name: 'Emoji Designer', logo: '/assets/hero/partner1.png' },
   { name: 'Blue Scouts Band', logo: '/assets/hero/partners2.png' },
-  { name: 'Orpnation Foundation', logo: '/assets/hero/partner3.png' },
+  { name: 'CorpNation Foundation', logo: '/assets/hero/partner3.png' },
   { name: 'COWRM', logo: '/assets/hero/partner4.png' },
   { name: 'Connect FM', logo: '/assets/hero/partner6.png' },
 ];
