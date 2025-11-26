@@ -4,8 +4,6 @@ import PageHero from '../components/PageHero';
 import SectionHeading from '../components/SectionHeading';
 import UnderDevelopmentModal from '../components/UnderDevelopmentModal';
 import {
-  capabilityHighlights,
-  eventHighlights,
   galleryItems,
   heroContent,
   heroImages,
@@ -176,10 +174,7 @@ const HomePage = () => {
 
   // Hero image carousel with 1-minute delay for hero1
   useEffect(() => {
-    let carouselInterval: NodeJS.Timeout | null = null;
-
-    // Filter out hero2, hero3, and image6 - only use hero1, hero4, hero5
-    const carouselImages = [heroImages[0], heroImages[3], heroImages[4]]; // hero1, hero4, hero5
+    let carouselInterval: ReturnType<typeof setInterval> | null = null;
 
     // Show hero1 for 1 minute (60000ms) before starting carousel
     const initialDelay = setTimeout(() => {
@@ -333,7 +328,7 @@ const HomePage = () => {
       <section className="why-join-section">
         <div className="shell">
           <div
-            ref={(el) => headingRefs.current.set('why-join', el)}
+            ref={(el) => { headingRefs.current.set('why-join', el); }}
             className={`section-heading-wrapper ${visibleHeadings.has('why-join') ? 'visible' : ''}`}
           >
             <SectionHeading
@@ -364,7 +359,7 @@ const HomePage = () => {
 
       <section className="shell upcoming-events-section">
         <div
-          ref={(el) => headingRefs.current.set('upcoming-events', el)}
+          ref={(el) => { headingRefs.current.set('upcoming-events', el); }}
           className={`section-heading-wrapper ${visibleHeadings.has('upcoming-events') ? 'visible' : ''}`}
         >
           <SectionHeading
@@ -402,7 +397,7 @@ const HomePage = () => {
       <section className="sponsors-section">
         <div className="shell">
           <div
-            ref={(el) => headingRefs.current.set('sponsors', el)}
+            ref={(el) => { headingRefs.current.set('sponsors', el); }}
             className={`section-heading-wrapper ${visibleHeadings.has('sponsors') ? 'visible' : ''}`}
           >
             <SectionHeading
@@ -429,7 +424,7 @@ const HomePage = () => {
       <section className="our-impact-section">
         <div className="shell">
           <div
-            ref={(el) => headingRefs.current.set('our-impact', el)}
+            ref={(el) => { headingRefs.current.set('our-impact', el); }}
             className={`section-heading-wrapper ${visibleHeadings.has('our-impact') ? 'visible' : ''}`}
           >
             <div className="impact-header-text">
@@ -463,7 +458,7 @@ const HomePage = () => {
 
     <section className="shell">
       <div
-        ref={(el) => headingRefs.current.set('command-centers', el)}
+        ref={(el) => { headingRefs.current.set('command-centers', el); }}
         className={`section-heading-wrapper ${visibleHeadings.has('command-centers') ? 'visible' : ''}`}
       >
         <SectionHeading
@@ -584,7 +579,7 @@ const HomePage = () => {
 
     <section className="shell">
       <div
-        ref={(el) => headingRefs.current.set('event-highlights', el)}
+        ref={(el) => { headingRefs.current.set('event-highlights', el); }}
         className={`section-heading-wrapper ${visibleHeadings.has('event-highlights') ? 'visible' : ''}`}
       >
         <SectionHeading
@@ -808,7 +803,7 @@ const HomePage = () => {
 
     <section className="shell">
       <div
-        ref={(el) => headingRefs.current.set('gallery', el)}
+        ref={(el) => { headingRefs.current.set('gallery', el); }}
         className={`section-heading-wrapper ${visibleHeadings.has('gallery') ? 'visible' : ''}`}
       >
         <SectionHeading
@@ -871,7 +866,7 @@ const HomePage = () => {
 
     <section className="shell">
       <div
-        ref={(el) => headingRefs.current.set('news-feed', el)}
+        ref={(el) => { headingRefs.current.set('news-feed', el); }}
         className={`section-heading-wrapper ${visibleHeadings.has('news-feed') ? 'visible' : ''}`}
       >
         <SectionHeading

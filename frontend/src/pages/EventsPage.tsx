@@ -32,9 +32,9 @@ const EventsPage = () => (
               <div className="event-card-content">
                 <p className="eyebrow">{event.type}</p>
                 <h3>{event.title}</h3>
-                {event.location && <p className="event-location">{event.location}</p>}
-                {event.route && <p className="event-location">Route: {event.route}</p>}
-                {event.description && <p className="event-description">{event.description}</p>}
+                {'location' in event && event.location && <p className="event-location">{event.location}</p>}
+                {'route' in event && event.route && <p className="event-location">Route: {event.route}</p>}
+                {'description' in event && event.description && <p className="event-description">{event.description}</p>}
                 <div className="event-footer">
                   <span className="event-date">{event.date}</span>
                   <button type="button" className="primary-button event-details-btn">

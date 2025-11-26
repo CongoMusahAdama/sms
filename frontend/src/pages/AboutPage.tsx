@@ -47,7 +47,7 @@ const AboutPage = () => {
     <section className="who-we-are-section">
       <div className="shell">
         <div
-          ref={(el) => headingRefs.current.set('who-we-are', el)}
+          ref={(el) => { headingRefs.current.set('who-we-are', el); }}
           className={`section-heading-wrapper ${visibleHeadings.has('who-we-are') ? 'visible' : ''}`}
         >
           <SectionHeading eyebrow="Introduction" title="Who We Are" align="left" />
@@ -61,7 +61,7 @@ const AboutPage = () => {
     {/* Our Story / History */}
     <section className="shell">
       <div
-        ref={(el) => headingRefs.current.set('our-story', el)}
+        ref={(el) => { headingRefs.current.set('our-story', el); }}
         className={`section-heading-wrapper ${visibleHeadings.has('our-story') ? 'visible' : ''}`}
       >
         <SectionHeading eyebrow="Our Journey" title="Our Story" align="left" />
@@ -102,7 +102,7 @@ const AboutPage = () => {
     {/* Core Values */}
     <section className="shell">
       <div
-        ref={(el) => headingRefs.current.set('core-values', el)}
+        ref={(el) => { headingRefs.current.set('core-values', el); }}
         className={`section-heading-wrapper ${visibleHeadings.has('core-values') ? 'visible' : ''}`}
       >
         <SectionHeading eyebrow="Guiding Principles" title="Our Core Values" align="left" />
@@ -120,7 +120,7 @@ const AboutPage = () => {
     {/* What We Do / Activities */}
     <section className="shell">
       <div
-        ref={(el) => headingRefs.current.set('what-we-do', el)}
+        ref={(el) => { headingRefs.current.set('what-we-do', el); }}
         className={`section-heading-wrapper ${visibleHeadings.has('what-we-do') ? 'visible' : ''}`}
       >
         <SectionHeading eyebrow="Our Work" title="What We Do" align="left" />
@@ -143,7 +143,7 @@ const AboutPage = () => {
     {/* Achievements & Recognition */}
     <section className="shell">
       <div
-        ref={(el) => headingRefs.current.set('achievements', el)}
+        ref={(el) => { headingRefs.current.set('achievements', el); }}
         className={`section-heading-wrapper ${visibleHeadings.has('achievements') ? 'visible' : ''}`}
       >
         <SectionHeading eyebrow="Our Success" title="Achievements & Recognition" align="left" />
@@ -161,7 +161,7 @@ const AboutPage = () => {
     {/* Our Identity */}
     <section className="shell">
       <div
-        ref={(el) => headingRefs.current.set('our-identity', el)}
+        ref={(el) => { headingRefs.current.set('our-identity', el); }}
         className={`section-heading-wrapper ${visibleHeadings.has('our-identity') ? 'visible' : ''}`}
       >
         <SectionHeading eyebrow="Brand Identity" title="Our Identity" align="left" />
@@ -199,7 +199,7 @@ const AboutPage = () => {
     {/* Events & Programs */}
     <section className="shell">
       <div
-        ref={(el) => headingRefs.current.set('events-programs', el)}
+        ref={(el) => { headingRefs.current.set('events-programs', el); }}
         className={`section-heading-wrapper ${visibleHeadings.has('events-programs') ? 'visible' : ''}`}
       >
         <SectionHeading eyebrow="Engagement" title="Events & Programs" align="left" />
@@ -221,7 +221,7 @@ const AboutPage = () => {
     {/* Contact & Social Media */}
     <section className="shell">
       <div
-        ref={(el) => headingRefs.current.set('contact', el)}
+        ref={(el) => { headingRefs.current.set('contact', el); }}
         className={`section-heading-wrapper ${visibleHeadings.has('contact') ? 'visible' : ''}`}
       >
         <SectionHeading eyebrow="Get in Touch" title="Contact & Social Media" align="left" />
