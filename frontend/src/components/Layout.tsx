@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
+import MobileBottomNav from './MobileBottomNav';
 
 const Layout = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -26,6 +27,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
+      <MobileBottomNav />
       <button
         type="button"
         className={`scroll-to-top ${showScrollTop ? 'show' : ''}`}

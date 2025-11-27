@@ -115,6 +115,30 @@ export const aboutContent = {
         'Masks and costumes in our tradition carry deep symbolic meaning. They represent ancestral connections, spiritual protection, and the transformation of individuals into cultural ambassadors. Each mask tells a story, and every costume reflects the rich tapestry of our heritage.',
     },
   },
+  designInspiration: [
+    {
+      year: 2024,
+      theme: 'Unity Through Tradition',
+      description: 'The 2024 collection celebrates our 25th anniversary by honoring the unity that has sustained us through decades of cultural preservation. Each outfit reflects the strength of our community bonds and the timeless traditions that connect us across generations.',
+      image: '/assets/hero/gallery1.png', // Placeholder - replace with actual outfit image
+      highlights: [
+        'Traditional patterns merged with contemporary design',
+        'Colors representing unity and celebration',
+        'Symbolic elements honoring our founding members'
+      ],
+    },
+    {
+      year: 2023,
+      theme: 'Heritage Reimagined',
+      description: 'Drawing from ancestral wisdom, the 2023 designs reimagine classic masquerade elements with modern flair, creating a bridge between past and present.',
+      image: '/assets/hero/gallery2.png', // Placeholder - replace with actual outfit image
+      highlights: [
+        'Ancient mask motifs with contemporary interpretations',
+        'Sustainable materials honoring our connection to nature',
+        'Stories from elders woven into fabric patterns'
+      ],
+    },
+  ],
   contact: {
     phone: '+233 XX XXX XXXX',
     email: 'info@suprememasqueraders.org',
@@ -245,13 +269,21 @@ export const upcomingEvents = [
   },
 ];
 
-export const sponsorsAndPartners = [
-  { name: 'Evergreen Band Movement', logo: '/assets/hero/partner.png' },
-  { name: 'Emoji Designer', logo: '/assets/hero/partner1.png' },
-  { name: 'Blue Scouts Band', logo: '/assets/hero/partners2.png' },
-  { name: 'CorpNation Foundation', logo: '/assets/hero/partner3.png' },
-  { name: 'COWRM', logo: '/assets/hero/partner4.png' },
-  { name: 'Connect FM', logo: '/assets/hero/partner6.png' },
+export type SponsorCategory = 'vendors' | 'sponsors' | 'partners' | 'band' | 'tv-radio' | 'others';
+
+export type SponsorItem = {
+  name: string;
+  logo: string;
+  category: SponsorCategory;
+};
+
+export const sponsorsAndPartners: SponsorItem[] = [
+  { name: 'Evergreen Band Movement', logo: '/assets/hero/partner.png', category: 'band' },
+  { name: 'Emoji Designer', logo: '/assets/hero/partner1.png', category: 'vendors' },
+  { name: 'Blue Scouts Band', logo: '/assets/hero/partners2.png', category: 'band' },
+  { name: 'CorpNation Foundation', logo: '/assets/hero/partner3.png', category: 'partners' },
+  { name: 'COWRM', logo: '/assets/hero/partner4.png', category: 'sponsors' },
+  { name: 'Connect FM', logo: '/assets/hero/partner6.png', category: 'tv-radio' },
 ];
 
 export const partners = [
@@ -547,202 +579,366 @@ export const teamMembers = [
   },
 ];
 
-export const branches = [
+export type BranchLeader = {
+  name: string;
+  image: string;
+  role?: string;
+};
+
+export type Branch = {
+  name: string;
+  lead: string;
+  leaders: BranchLeader[];
+  members: number;
+  contact: string;
+  focus: string;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  address?: string;
+};
+
+// Helper function to generate human placeholder avatar based on seed
+const getLeaderAvatar = (seed: string) => 
+  `https://api.dicebear.com/7.x/personas/svg?seed=${encodeURIComponent(seed)}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`;
+
+export const branches: Branch[] = [
   {
     name: 'KANSA',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: getLeaderAvatar('KANSA'), role: 'Lead' }
+    ],
     members: 0,
     contact: 'kansa@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Kansa, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'FIFA',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: getLeaderAvatar('FIFA'), role: 'Lead' }
+    ],
     members: 0,
     contact: 'fifa@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'FIFA, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'DAAVI AMA',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: getLeaderAvatar('DAAVI AMA'), role: 'Lead' }
+    ],
     members: 0,
     contact: 'daavi@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Daavi Ama, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'JM',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: getLeaderAvatar('JM'), role: 'Lead' }
+    ],
     members: 0,
     contact: 'jm@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'JM, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'MPOHOR',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'mpohor@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Mpohor, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'APOWA',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'apowa@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Apowa, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'BMB',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'bmb@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'BMB, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'MALIK',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'malik@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Malik, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'APREMEDO',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'apremedo@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Apremedo, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'NEWSITE',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'newsite@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Newsite, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'COCOA VILLA',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'cocoavilla@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Cocoa Villa, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'UNCLE CEE',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'unclecee@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Uncle Cee, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'NO.2',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'no2@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'No.2, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'NO.3',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'no3@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'No.3, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'ASEMENSUDO',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'asemensudo@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Asemensudo, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'ESSIKADO',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'essikado@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Essikado, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'TAKOR',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'takor@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Takor, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'ELMINA',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'elmina@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 5.0847, lng: -1.3500 },
+    address: 'Elmina, Central Region, Ghana',
   },
   {
     name: 'LAGOS TOWN',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'lagostown@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Lagos Town, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'KWESIMINTIM',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'kwesimintim@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Kwesimintim, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'ANAJI',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'anaji@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Anaji, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'AMANFUL',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'amanful@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Amanful, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'TEDDY',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'teddy@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Teddy, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'GHOSTY',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'ghosty@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Ghosty, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'PRESIDENT',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'president@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'President, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'NEW TAKORADI',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'newtakoradi@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'New Takoradi, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'EFFIAKUMA',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'effiakuma@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Effiakuma, Sekondi-Takoradi, Ghana',
   },
   {
     name: 'SMALL LONDON',
     lead: 'Branch Lead',
+    leaders: [
+      { name: 'Branch Leader', image: '', role: 'Lead' }
+    ],
     members: 0,
     contact: 'smalllondon@suprememasq.org',
     focus: 'Community engagement & cultural activities',
+    coordinates: { lat: 4.9431, lng: -1.7074 },
+    address: 'Small London, Sekondi-Takoradi, Ghana',
   },
 ];
 

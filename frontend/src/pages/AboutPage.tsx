@@ -196,6 +196,64 @@ const AboutPage = () => {
       </div>
     </section>
 
+    {/* Outfit Design Inspiration */}
+    <section className="shell">
+      <div
+        ref={(el) => { headingRefs.current.set('design-inspiration', el); }}
+        className={`section-heading-wrapper ${visibleHeadings.has('design-inspiration') ? 'visible' : ''}`}
+      >
+        <SectionHeading eyebrow="Creative Expression" title="Outfit Design Inspiration" align="left" />
+      </div>
+      <div className="about-content">
+        <div className="story-section">
+          <h3>Annual Design Philosophy</h3>
+          <p>
+            Each year, our masquerade outfits are carefully crafted with deep meaning and cultural significance. 
+            Our design team draws inspiration from our rich heritage, current themes, and the evolving narrative 
+            of our community to create unique ensembles that tell a story.
+          </p>
+        </div>
+        <div className="design-inspiration-grid">
+          {aboutContent.designInspiration && aboutContent.designInspiration.length > 0 ? (
+            aboutContent.designInspiration.map((inspiration) => (
+              <article key={inspiration.year} className="inspiration-card">
+                {inspiration.image && (
+                  <div className="inspiration-image-wrapper">
+                    <img 
+                      src={inspiration.image} 
+                      alt={`${inspiration.year} - ${inspiration.theme}`}
+                      className="inspiration-image"
+                      loading="lazy"
+                      onError={(e) => {
+                        // Fallback placeholder if image fails to load
+                        (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250"%3E%3Crect fill="%23e5e7eb" width="400" height="250"/%3E%3Ctext fill="%239ca3af" font-family="Arial" font-size="18" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EOutfit Image%3C/text%3E%3C/svg%3E';
+                      }}
+                    />
+                  </div>
+                )}
+                <div className="inspiration-card-content">
+                  <div className="inspiration-year">{inspiration.year}</div>
+                  <h4>{inspiration.theme}</h4>
+                  <p>{inspiration.description}</p>
+                  {inspiration.highlights && (
+                    <ul className="inspiration-highlights">
+                      {inspiration.highlights.map((highlight, idx) => (
+                        <li key={idx}>{highlight}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </article>
+            ))
+          ) : (
+            <div className="inspiration-placeholder">
+              <p>Design inspiration content will be added here. This section will showcase the creative vision and cultural significance behind each year's masquerade outfit designs.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+
     {/* Events & Programs */}
     <section className="shell">
       <div

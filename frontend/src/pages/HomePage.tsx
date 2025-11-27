@@ -35,6 +35,7 @@ const HomePage = () => {
     seconds: 0,
   });
   const [showUnderDevelopment, setShowUnderDevelopment] = useState(false);
+  const [selectedSponsorCategory, setSelectedSponsorCategory] = useState<'vendors' | 'sponsors' | 'partners' | 'band' | 'tv-radio' | 'others' | 'all'>('all');
 
   // Countdown timer to December 25th, 2025
   useEffect(() => {
@@ -327,30 +328,26 @@ const HomePage = () => {
 
       <section className="why-join-section">
         <div className="shell">
-          <div
-            ref={(el) => { headingRefs.current.set('why-join', el); }}
-            className={`section-heading-wrapper ${visibleHeadings.has('why-join') ? 'visible' : ''}`}
-          >
-            <SectionHeading
-              eyebrow="Membership"
-              title="Why Join Supreme Masqueraders"
-              description="Discover the benefits of being part of our vibrant cultural community."
-            />
+          <div className="why-join-header">
+            <h2 className="why-join-title">What Set Supreme Apart?</h2>
+            <p className="why-join-intro">
+              At Supreme Masqueraders Society, we take pride in offering more than just membership; we offer an experience. Here's what makes us unique:
+            </p>
           </div>
-          <div className="why-join-list">
-            {whyJoinReasons.map((reason, index) => (
+          <div className="why-join-cards">
+            {whyJoinReasons.slice(0, 3).map((reason, index) => (
               <div
                 key={reason.title}
                 ref={(el) => {
-                  reasonRefs.current[index] = el;
+                  if (el) reasonRefs.current[index] = el;
                 }}
-                className={`why-join-item ${visibleReasons.includes(index) ? 'visible' : ''} ${index % 2 === 0 ? 'slide-left' : 'slide-right'}`}
+                className={`why-join-card ${visibleReasons.includes(index) ? 'visible' : ''}`}
               >
-                <div className="why-join-number">{index + 1}</div>
-                <div className="why-join-content">
-                  <h3>{reason.title}</h3>
-                  <p>{reason.description}</p>
+                <div className={`why-join-number-circle number-${index + 1}`}>
+                  {String(index + 1).padStart(2, '0')}
                 </div>
+                <h3 className="why-join-card-title">{reason.title}</h3>
+                <p className="why-join-card-description">{reason.description}</p>
               </div>
             ))}
           </div>
@@ -400,22 +397,81 @@ const HomePage = () => {
             ref={(el) => { headingRefs.current.set('sponsors', el); }}
             className={`section-heading-wrapper ${visibleHeadings.has('sponsors') ? 'visible' : ''}`}
           >
-            <SectionHeading
-              eyebrow="Our Supporters"
-              title="Sponsors & Partners"
-              description="We're grateful for the organizations that support our mission."
-            />
+            <h2 className="sponsors-title">Trusted by customers, partners and the industry</h2>
           </div>
+          
+          {/* Filter Tabs */}
+          <div className="sponsor-filter-tabs">
+            <button
+              className={`sponsor-tab ${selectedSponsorCategory === 'all' ? 'active' : ''}`}
+              onClick={() => setSelectedSponsorCategory('all')}
+            >
+              All
+            </button>
+            <button
+              className={`sponsor-tab ${selectedSponsorCategory === 'vendors' ? 'active' : ''}`}
+              onClick={() => setSelectedSponsorCategory('vendors')}
+            >
+              Vendors
+            </button>
+            <button
+              className={`sponsor-tab ${selectedSponsorCategory === 'sponsors' ? 'active' : ''}`}
+              onClick={() => setSelectedSponsorCategory('sponsors')}
+            >
+              Sponsors
+            </button>
+            <button
+              className={`sponsor-tab ${selectedSponsorCategory === 'partners' ? 'active' : ''}`}
+              onClick={() => setSelectedSponsorCategory('partners')}
+            >
+              Partners
+            </button>
+            <button
+              className={`sponsor-tab ${selectedSponsorCategory === 'band' ? 'active' : ''}`}
+              onClick={() => setSelectedSponsorCategory('band')}
+            >
+              Band
+            </button>
+            <button
+              className={`sponsor-tab ${selectedSponsorCategory === 'tv-radio' ? 'active' : ''}`}
+              onClick={() => setSelectedSponsorCategory('tv-radio')}
+            >
+              TV & Radio
+            </button>
+            <button
+              className={`sponsor-tab ${selectedSponsorCategory === 'others' ? 'active' : ''}`}
+              onClick={() => setSelectedSponsorCategory('others')}
+            >
+              Others
+            </button>
+          </div>
+
+          {/* Filtered Sponsors Marquee */}
           <div className="sponsors-marquee">
-            <div className="sponsors-track">
-              {[...sponsorsAndPartners, ...sponsorsAndPartners].map((sponsor, index) => (
-                <div key={`${sponsor.name}-${index}`} className="sponsor-item">
-                  <div className="sponsor-logo">
-                    <img src={sponsor.logo} alt={sponsor.name} loading="lazy" />
-                  </div>
-                  <p className="sponsor-name">{sponsor.name}</p>
-                </div>
-              ))}
+            <div className={`sponsors-track ${selectedSponsorCategory === 'all' ? 'animated' : ''}`}>
+              {selectedSponsorCategory === 'all' ? (
+                <>
+                  {[...sponsorsAndPartners, ...sponsorsAndPartners].map((sponsor, index) => (
+                    <div key={`${sponsor.name}-${index}`} className="sponsor-item">
+                      <div className="sponsor-logo">
+                        <img src={sponsor.logo} alt={sponsor.name} loading="lazy" />
+                      </div>
+                      <p className="sponsor-name">{sponsor.name}</p>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {[...sponsorsAndPartners.filter(s => s.category === selectedSponsorCategory), ...sponsorsAndPartners.filter(s => s.category === selectedSponsorCategory)].map((sponsor, index) => (
+                    <div key={`${sponsor.name}-${index}`} className="sponsor-item">
+                      <div className="sponsor-logo">
+                        <img src={sponsor.logo} alt={sponsor.name} loading="lazy" />
+                      </div>
+                      <p className="sponsor-name">{sponsor.name}</p>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           </div>
         </div>
