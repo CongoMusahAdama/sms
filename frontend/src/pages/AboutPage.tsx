@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SectionHeading from '../components/SectionHeading';
-import PageHero from '../components/PageHero';
-import { aboutContent } from '../data/content';
+import { aboutContent, stats } from '../data/content';
 
 const AboutPage = () => {
   const [visibleHeadings, setVisibleHeadings] = useState<Set<string>>(new Set());
@@ -37,124 +36,182 @@ const AboutPage = () => {
 
   return (
   <>
-    <PageHero
-      eyebrow="About us"
-      title="Supreme Masqueraders Society"
-      description="A vibrant cultural organization dedicated to preserving, promoting, and celebrating masquerade traditions while empowering youth and building stronger communities."
-    />
-
-    {/* Who We Are */}
-    <section className="who-we-are-section">
+    {/* Hero Section */}
+    <section className="about-hero-section">
+      <div className="about-hero-overlay"></div>
       <div className="shell">
-        <div
-          ref={(el) => { headingRefs.current.set('who-we-are', el); }}
-          className={`section-heading-wrapper ${visibleHeadings.has('who-we-are') ? 'visible' : ''}`}
-        >
-          <SectionHeading eyebrow="Introduction" title="Who We Are" align="left" />
-        </div>
-        <div className="about-content">
-          <p>{aboutContent.whoWeAre.description}</p>
+        <div className="about-hero-content">
+          <h1>About Us</h1>
         </div>
       </div>
     </section>
 
-    {/* Our Story / History */}
-    <section className="shell">
-      <div
-        ref={(el) => { headingRefs.current.set('our-story', el); }}
-        className={`section-heading-wrapper ${visibleHeadings.has('our-story') ? 'visible' : ''}`}
-      >
-        <SectionHeading eyebrow="Our Journey" title="Our Story" align="left" />
-      </div>
-      <div className="about-content">
-        <div className="story-section">
-          <h3>Origins</h3>
-          <p>
-            The Supreme Masqueraders Society was established on <strong>{aboutContent.ourStory.establishment}</strong> in
-            Sekondi-Takoradi, Ghana. {aboutContent.ourStory.origins}
-          </p>
-        </div>
-
-        <div className="story-section">
-          <h3>Cultural Significance</h3>
-          <p>{aboutContent.ourStory.culturalSignificance}</p>
-        </div>
-
-        <div className="story-section">
-          <h3>Key Milestones</h3>
-          <div className="milestones-grid">
-            {aboutContent.ourStory.milestones.map((milestone, index) => (
-              <div key={milestone.year} className="milestone-card">
-                <div className="milestone-card-header">
-                  <div className="milestone-year-badge">{milestone.year}</div>
-                  <div className="milestone-number">{index + 1}</div>
-                </div>
-                <div className="milestone-card-body">
-                  <p>{milestone.event}</p>
-                </div>
+    {/* Society Where There is Love */}
+    <section className="about-understanding-section">
+      <div className="shell">
+        <div className="understanding-layout">
+          <div className="understanding-title-wrapper">
+            <h2 className="understanding-title">Society Where There is Love</h2>
+          </div>
+          <div className="understanding-content-wrapper">
+            <div className="understanding-text">
+              <p className="understanding-text-with-cap">
+                <span className="drop-cap">T</span>
+                {aboutContent.whoWeAre.description.substring(1)}
+              </p>
+              <p>{aboutContent.ourStory.origins}</p>
+            </div>
+            <div className="understanding-images">
+              <div className="understanding-image-wrapper understanding-image-left">
+                <img src="/assets/hero/gallery1.png" alt="Supreme Masqueraders gathering" loading="lazy" />
+                <button className="video-play-button" aria-label="Play video">
+                  <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="30" fill="white" fillOpacity="0.9"/>
+                    <path d="M25 20L25 40L40 30L25 20Z" fill="#1D68FE"/>
+                  </svg>
+                </button>
               </div>
-            ))}
+              <div className="understanding-image-wrapper understanding-image-right">
+                <img src="/assets/hero/gallery2.png" alt="Community celebration" loading="lazy" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    {/* Core Values */}
-    <section className="shell">
-      <div
-        ref={(el) => { headingRefs.current.set('core-values', el); }}
-        className={`section-heading-wrapper ${visibleHeadings.has('core-values') ? 'visible' : ''}`}
-      >
-        <SectionHeading eyebrow="Guiding Principles" title="Our Core Values" align="left" />
-      </div>
-      <div className="values-grid">
-        {aboutContent.coreValues.map((value) => (
-          <article key={value.title} className="card">
-            <h3>{value.title}</h3>
-            <p>{value.description}</p>
-          </article>
-        ))}
+    {/* About Us - Identity, Vision and Values */}
+    <section className="about-identity-vision-section">
+      <div className="shell">
+        <div
+          ref={(el) => { headingRefs.current.set('identity-vision', el); }}
+          className={`about-identity-header ${visibleHeadings.has('identity-vision') ? 'visible' : ''}`}
+        >
+          <p className="about-identity-eyebrow">ABOUT US</p>
+          <h2 className="about-identity-title">Unveiling Our Identity, Vision and Values</h2>
+          <p className="about-identity-description">
+            We're passionate about cultural preservation and youth empowerment. With years of experience in masquerade traditions, 
+            we've established ourselves as leaders in celebrating and promoting our rich cultural heritage.
+          </p>
+        </div>
+
+        {/* Core Values Box */}
+        <div className="about-core-values-box">
+          {aboutContent.coreValues.slice(0, 4).map((value, index) => (
+            <div key={value.title} className="core-value-item">
+              <div className="core-value-icon">
+                {index === 0 && (
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <path d="M9 12l2 2 4-4"/>
+                  </svg>
+                )}
+                {index === 1 && (
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/>
+                  </svg>
+                )}
+                {index === 2 && (
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="3"/>
+                    <line x1="12" y1="2" x2="12" y2="6"/>
+                    <line x1="12" y1="18" x2="12" y2="22"/>
+                    <line x1="2" y1="12" x2="6" y2="12"/>
+                    <line x1="18" y1="12" x2="22" y2="12"/>
+                  </svg>
+                )}
+                {index === 3 && (
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                    <circle cx="12" cy="12" r="5"/>
+                  </svg>
+                )}
+              </div>
+              <div className="core-value-title">{value.title}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Vision and Mission Cards */}
+        <div className="about-vision-mission-cards">
+          <div className="vision-mission-card">
+            <div className="vision-mission-icon vision-icon-color">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <h3 className="vision-mission-card-title">Vision</h3>
+            <p className="vision-mission-card-text">{aboutContent.vision.statement}</p>
+          </div>
+          <div className="vision-mission-card">
+            <div className="vision-mission-icon mission-icon-color">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polygon points="12 6 12 18 16 12"/>
+              </svg>
+            </div>
+            <h3 className="vision-mission-card-title">Mission</h3>
+            <p className="vision-mission-card-text">{aboutContent.mission.statement}</p>
+          </div>
+        </div>
+
+        <div className="about-identity-cta">
+          <Link to="/about" className="know-more-button">Know More About Us</Link>
+        </div>
       </div>
     </section>
 
-    {/* What We Do / Activities */}
-    <section className="shell">
-      <div
-        ref={(el) => { headingRefs.current.set('what-we-do', el); }}
-        className={`section-heading-wrapper ${visibleHeadings.has('what-we-do') ? 'visible' : ''}`}
-      >
-        <SectionHeading eyebrow="Our Work" title="What We Do" align="left" />
-      </div>
-      <div className="activities-grid-new">
-        {aboutContent.activities.map((activity) => (
-          <article key={activity.title} className="activity-card-new">
-            <div className="activity-icon-box">
-              <span className="activity-icon">{activity.icon}</span>
-            </div>
-            <div className="activity-content">
-              <h3>{activity.title}</h3>
-              <p>{activity.description}</p>
-            </div>
-          </article>
-        ))}
+    {/* Awards Timeline Section */}
+    <section className="about-awards-section">
+      <div className="about-awards-overlay"></div>
+      <div className="shell">
+        <div className="awards-marquee">
+          <div className="awards-track">
+            {[...aboutContent.ourStory.milestones.slice().reverse(), ...aboutContent.ourStory.milestones.slice().reverse()].map((milestone, index) => {
+              const originalIndex = index % aboutContent.ourStory.milestones.length;
+              return (
+                <div key={`${milestone.year}-${index}`} className="award-item">
+                  <div className="award-year">{milestone.year}</div>
+                  <div className="award-badge">
+                    {originalIndex === 0 ? 'BEST SERVICE' : originalIndex === 1 ? 'TOPRATED' : originalIndex === 2 ? 'WINNER' : 'VICTORY'}
+                  </div>
+                  <div className="award-label">Best Cultural Organization</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
 
-    {/* Achievements & Recognition */}
-    <section className="shell">
-      <div
-        ref={(el) => { headingRefs.current.set('achievements', el); }}
-        className={`section-heading-wrapper ${visibleHeadings.has('achievements') ? 'visible' : ''}`}
-      >
-        <SectionHeading eyebrow="Our Success" title="Achievements & Recognition" align="left" />
-      </div>
-      <div className="achievements-grid">
-        {aboutContent.achievements.map((achievement) => (
-          <article key={achievement.title} className="card achievement-card">
-            <h3>{achievement.title}</h3>
-            <p>{achievement.description}</p>
-          </article>
-        ))}
+    {/* Statistics Section */}
+    <section className="about-stats-section">
+      <div className="shell">
+        <div className="stats-grid-about">
+          <div className="stat-item-about">
+            <div className="stat-number">{stats.find(s => s.label === 'Active Members')?.value || '4,000+'}</div>
+            <div className="stat-label">Happy Members</div>
+            <p className="stat-description">Active participants across all branches</p>
+          </div>
+          <div className="stat-item-about">
+            <div className="stat-number">100%</div>
+            <div className="stat-label">Cultural Preservation</div>
+            <p className="stat-description">Dedicated to maintaining traditions</p>
+          </div>
+          <div className="stat-item-about">
+            <div className="stat-number">18</div>
+            <div className="stat-label">Branches Worldwide</div>
+            <p className="stat-description">Global presence and reach</p>
+          </div>
+          <div className="stat-item-about">
+            <div className="stat-number">24+</div>
+            <div className="stat-label">Years of Service</div>
+            <p className="stat-description">Serving communities since 2000</p>
+          </div>
+        </div>
       </div>
     </section>
 
