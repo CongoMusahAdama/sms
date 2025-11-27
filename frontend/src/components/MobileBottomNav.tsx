@@ -1,6 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { navigationLinks } from '../data/content';
 
 const MobileBottomNav = () => {
   const location = useLocation();

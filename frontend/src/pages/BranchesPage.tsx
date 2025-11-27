@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import PageHero from '../components/PageHero';
 import SectionHeading from '../components/SectionHeading';
 import { branches, type Branch } from '../data/content';
@@ -93,18 +93,6 @@ const BranchesPage = () => {
 
     return filtered;
   }, [searchQuery, userLocation, maxDistance]);
-
-  // Generate Google Maps search URL for branches
-  const mapUrl = useMemo(() => {
-    if (filteredBranches.length === 0) {
-      return 'https://www.google.com/maps?q=Sekondi-Takoradi,+Ghana';
-    }
-    // Create a search query with all branch addresses
-    const branchQuery = filteredBranches
-      .map(branch => branch.address || branch.name)
-      .join(',+');
-    return `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1270547.5!2d-1.7074!3d4.9431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwNTYnMzUuMSJOIDHCsDQyJzI2LjYiVw!5e0!3m2!1sen!2sgh!4v1234567890`;
-  }, [filteredBranches]);
 
   // Create a clickable map link
   const mapLink = useMemo(() => {
