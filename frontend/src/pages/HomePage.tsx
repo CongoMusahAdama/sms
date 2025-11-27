@@ -328,11 +328,16 @@ const HomePage = () => {
 
       <section className="why-join-section">
         <div className="shell">
-          <div className="why-join-header">
-            <h2 className="why-join-title">What Set Supreme Apart?</h2>
-            <p className="why-join-intro">
-              At Supreme Masqueraders Society, we take pride in offering more than just membership; we offer an experience. Here's what makes us unique:
-            </p>
+          <div
+            ref={(el) => { headingRefs.current.set('why-join', el); }}
+            className={`section-heading-wrapper ${visibleHeadings.has('why-join') ? 'visible' : ''}`}
+          >
+            <div className="why-join-header">
+              <h2 className="why-join-title">What Set Supreme Apart?</h2>
+              <p className="why-join-intro">
+                At Supreme Masqueraders Society, we take pride in offering more than just membership; we offer an experience. Here's what makes us unique:
+              </p>
+            </div>
           </div>
           <div className="why-join-cards">
             {whyJoinReasons.slice(0, 3).map((reason, index) => (
