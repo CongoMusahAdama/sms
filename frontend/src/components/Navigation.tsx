@@ -8,11 +8,31 @@ const Navigation = () => {
   const isHomePage = location.pathname === '/';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showUnderDevelopment, setShowUnderDevelopment] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location.pathname]);
+
+  // Track scroll to toggle solid background on homepage
+  useEffect(() => {
+    if (!isHomePage) {
+      setIsScrolled(true);
+      return;
+    }
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isHomePage]);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -27,7 +47,7 @@ const Navigation = () => {
   }, [isMenuOpen]);
   
   return (
-    <header className={`site-header ${isHomePage ? 'homepage-header' : 'other-page-header'}`}>
+    <header className={`site-header ${isHomePage ? 'homepage-header' : 'other-page-header'} ${isScrolled ? 'header-scrolled' : ''}`}>
       <div className="shell">
         <Link to="/" className="brand">
           <img src="/assets/hero/logo.png" alt="Supreme Masqueraders Society" className="brand-logo" />

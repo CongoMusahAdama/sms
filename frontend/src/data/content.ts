@@ -24,13 +24,14 @@ export const aboutContent = {
   whoWeAre: {
     title: 'Who We Are',
     description:
-      'The Supreme Masqueraders Society is a vibrant cultural organization dedicated to preserving, promoting, and celebrating the rich tradition of masquerade culture. We are a community of passionate individuals committed to engaging, empowering, and uplifting youth through the art and culture of masquerade.',
+      'The Supreme Masqueraders Society is a constitutionally chartered, non-profit youth body under the Ghana Youth Association. Founded on January 3rd, 2000, we have evolved from a fringe masquerade troupe into a cultural institution, anchoring a dynamic tradition once dismissed as a pastime for the unruly and transforming it into a symbol of pride, unity, and upward mobility. Headquartered in Esikafoanbantem Number Two, Sekondi-Takoradi, we advance the holistic development of young people through progressive masquerade training, civic responsibility, and community service.',
   },
   ourStory: {
     title: 'Our Story',
-    establishment: '8 January 2000',
+    establishment: '3 January 2000',
     origins:
-      'Founded in Sekondi-Takoradi, the Supreme Masqueraders Society emerged from a deep-rooted passion for preserving our cultural heritage. What began as a small group of dedicated individuals has grown into a thriving community of over 4,000 members across 18 branches worldwide.',
+      'We formally adopted our Constitution to honor the Almighty God, respect our founders, and strengthen intergenerational bonds between youth and elders. From our registered office in Sekondi-Takoradi we have grown into a disciplined network of 30+ branches across the Western and Central Regions, attracting participation from across Ghana and the international diaspora, including enthusiasts from the Caribbean. We operate under the motto',
+    motto: 'Supreme: One Love',
     culturalSignificance:
       'Masquerade culture holds profound significance in our community, representing not just entertainment but a living connection to our ancestors, traditions, and collective identity. Our society serves as a bridge between generations, ensuring these precious traditions continue to thrive.',
     milestones: [
@@ -39,65 +40,112 @@ export const aboutContent = {
       { year: '2010', event: 'Reached 500 active members milestone' },
       { year: '2015', event: 'Launched youth empowerment programs' },
       { year: '2020', event: 'Celebrated 20 years of cultural preservation' },
-      { year: '2024', event: 'Reached 4,000+ members across 18 branches' },
+      { year: '2024', event: 'Reached 4,000+ members across 30+ branches' },
     ],
+  },
+  anniversary: {
+    theme: 'My Community, My Responsibility',
+    description:
+      'This year’s anniversary is not merely a celebration; it is a manifesto. A declaration that masquerading, beyond its vibrant pageantry, holds the potential to shape character, build communities, and inspire youth. As Sir Isaac noted, “This is not just a costume. It’s a culture. And if we are to preserve it, we must practice and pass it down with integrity.”',
+    dressWellCampaign: {
+      title: 'Dress Well Campaign',
+      description:
+        'Launched in response to a growing trend among some participants to forgo the full masquerade regalia, this campaign is a call to return to form. It insists that the masquerade is not a half-hearted display but a complete artistic and cultural expression. “What we wear is part of the statement we make. It must reflect dignity, identity, and discipline.”',
+    },
+    projects: [
+      {
+        title: 'School Rehabilitation',
+        description: 'Repainting and securing selected public school buildings in Takoradi.',
+      },
+      {
+        title: 'Inter-branch Sports Festival',
+        description: 'Designed to foster cohesion across our sprawling network.',
+      },
+      {
+        title: 'JHS Quiz Competition',
+        description: 'Targeting academic excellence and intellectual engagement among the region’s youth (Commencing May 28th).',
+      },
+      {
+        title: 'Community Health Screening',
+        description: 'Free checks for malaria, eye health, dental issues, and blood pressure at the local community center (June 3rd).',
+      },
+      {
+        title: 'Borehole Project',
+        description: 'A civic intervention in Apremdo to alleviate the community’s water access challenges.',
+      },
+    ],
+    ankosVillage: {
+      title: 'Ankos Village Project',
+      description:
+        'Envisioned as a hospitality and rest zone for revelers, complete with food vendors, live band music, and shaded seating. The village will serve as a sanctuary for masqueraders who pour into Takoradi from across the globe, signaling that Supreme is concerned with the full masquerading experience.',
+    },
+    costumePolicy: {
+      title: 'Costume & Exclusivity',
+      description:
+        'Our policy of never repeating outfits is deliberate—it keeps our audience returning year after year to witness something new and breathtaking. The cost includes annual dues and contributions toward our community projects.',
+    },
   },
   mission: {
     title: 'Mission Statement',
     statement:
-      'To engage, empower, and uplift youth through the art and culture of masquerade, fostering unity, creativity, and community development.',
+      'To promote the physical, intellectual, social, and spiritual development of young people through the art of masquerade, nurturing responsible citizens who serve their local, national, and international communities.',
   },
   vision: {
     title: 'Vision Statement',
     statement:
-      'To build a vibrant and inclusive community where the youth embrace cultural identity, celebrate heritage, and achieve personal growth through masquerade traditions.',
+      'To sustain a disciplined, non-political, and inclusive society where every youth finds mentorship, cultural pride, and opportunities to lead community development.',
   },
   coreValues: [
-    { title: 'Youth Empowerment', description: 'Encouraging leadership, participation, and self-expression among young people.' },
-    { title: 'Unity', description: 'Strengthening social bonds and teamwork through collective participation.' },
-    { title: 'Heritage', description: 'Preserving and promoting masquerade traditions and local customs.' },
-    { title: 'Creativity', description: 'Fostering artistic expression, performance skills, and cultural innovation.' },
-    { title: 'Discipline', description: 'Upholding ethical behavior, respect, and commitment to excellence.' },
-    { title: 'Community', description: 'Building stronger communities through engagement and service.' },
+    { title: 'Faith & Integrity', description: 'Acknowledging the supremacy of God while upholding honesty and accountability.' },
+    { title: 'Founders’ Legacy', description: 'Honouring the pioneers who established the society and safeguarding their vision.' },
+    { title: 'Community Respect', description: 'Serving our neighborhoods with humility, civic responsibility, and respect for leadership.' },
+    { title: 'Intergenerational Unity', description: 'Creating socio-economic and intellectual exchange between elders and youth.' },
+    { title: 'Global Collaboration', description: 'Building alliances with other youth groups and masquerade societies around the world.' },
+    { title: 'Service & Discipline', description: 'Maintaining disciplined conduct, responsible finance, and dutiful participation in meetings and outings.' },
   ],
   activities: [
-    { 
-      title: 'Masquerade Performances', 
-      description: 'Regular performances at festivals, cultural events, and community celebrations.',
-      icon: '🎭'
+    {
+      title: 'Progressive Training Sessions',
+      description: 'Structured rehearsals and mentorship that sharpen performance, leadership, and etiquette.',
+      icon: '📘'
     },
-    { 
-      title: 'Youth Empowerment Initiatives', 
-      description: 'Programs designed to develop leadership skills, creativity, and confidence in young members.',
-      icon: '🌟'
+    {
+      title: 'Health & Wellness Drives',
+      description: 'Clean-up exercises, health walks, and screenings that keep members and communities safe.',
+      icon: '🏥'
     },
-    { 
-      title: 'Cultural Preservation', 
-      description: 'Documenting, teaching, and preserving traditional masquerade practices and knowledge.',
-      icon: '📚'
+    {
+      title: 'Educational Forums',
+      description: 'Seminars that deepen civic education, financial stewardship, and constitutional literacy.',
+      icon: '🎓'
     },
-    { 
-      title: 'Community Programs', 
-      description: 'Outreach initiatives that bring masquerade culture to schools, community centers, and public spaces.',
+    {
+      title: 'Community Outreach',
+      description: 'Joint projects with elders, patrons, and partner youth groups across Ghana and the diaspora.',
       icon: '🤝'
     },
-    { 
-      title: 'Festive Celebrations', 
-      description: 'Annual December and New Year outings with brass band music, showcasing our vibrant traditions.',
+    {
+      title: 'Festive Turnouts',
+      description: 'Christmas and New Year outings led by brass bands that display our identity and unity.',
       icon: '🎉'
     },
   ],
   achievements: [
-    { title: '24+ Years of Service', description: 'Over two decades of dedicated cultural preservation and community engagement.' },
-    { title: '4,000+ Active Members', description: 'A growing community of passionate individuals across 18 branches worldwide.' },
-    { title: '10,000+ Annual Outing Attendees', description: 'Our festive celebrations bring together thousands of community members each year.' },
-    { title: '500+ Youth Mentored', description: 'Comprehensive mentorship programs that have transformed young lives.' },
+    { title: '24+ Years of Service', description: 'Constitution-led governance since 2000 with triennial board renewals.' },
+    { title: '4,000+ Active Members', description: 'A dues-paying community spread across Sekondi-Takoradi and global chapters.' },
+    { title: '10,000+ Annual Outing Attendees', description: 'Festive routes that welcome residents, elders, and partner groups each December.' },
+    { title: 'Member Support Fund', description: 'By-law backed donations for marriages, outdooring, health crises, and bereavements.' },
   ],
   identity: {
     logo: {
       title: 'Our Logo',
       description:
-        'The Supreme Masqueraders Society logo represents the fusion of tradition and modernity. The design incorporates elements that symbolize our commitment to preserving cultural heritage while embracing innovation and growth.',
+        'The Supreme Masqueraders Society logo represents the fusion of tradition and modernity. A watchful eagle crowns the crest, signifying guardianship, resilience, and our mandate to protect future generations while preserving cultural heritage and embracing innovation.',
+    },
+    eagle: {
+      title: 'Symbol of the Eagle',
+      description:
+        'The eagle’s outstretched wings represent protection over every branch, while its sharp gaze reminds members to stay vigilant, principled, and ready to soar above challenges in service to the community.',
     },
     colors: {
       title: 'Brand Colors',
@@ -140,13 +188,15 @@ export const aboutContent = {
     },
   ],
   contact: {
-    phone: '+233 XX XXX XXXX',
+    phone: '+233 24 915 7755 / +233 24 425 0855',
     email: 'info@suprememasqueraders.org',
-    location: 'Sekondi-Takoradi, Ghana',
+    location: 'Takoradi No. 2, Ghana',
     socialMedia: {
-      facebook: 'https://facebook.com/suprememasqueraders',
-      instagram: 'https://instagram.com/suprememasqueraders',
+      facebook: 'https://web.facebook.com/suprememasqueraders',
+      instagram: 'https://www.instagram.com/suprememasqueraders?igsh=MXV5dHM3N3planhybw==',
       twitter: 'https://x.com/S_masqueraders',
+      youtube: 'https://www.youtube.com/@SupremeMasqueraders',
+      xHandle: '@S_masqueraders',
     },
   },
 };
@@ -554,28 +604,110 @@ export const galleryYears = [2024, 2023, 2022, 2021, 2020];
 
 export const teamMembers = [
   {
-    name: 'Ama Tetteh',
-    title: 'Global Executive Director',
-    focus: 'Vision & partnerships',
-    portrait: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=600&q=80',
+    name: 'Sampson Yaw Boateng',
+    title: 'Chairperson / President',
+    focus: 'Executive headship, AGM stewardship, and constitutional guardianship.',
+    portrait: '/assets/hero/sampson.png',
+    isExecutive: true,
   },
   {
-    name: 'Chike Adewale',
-    title: 'Chief Operations Officer',
-    focus: 'Turnouts & safety',
+    name: 'Magnus Nii-Boye',
+    title: 'Vice Chairperson',
+    focus: 'Acts for the Chairperson and coordinates emergency meetings when required.',
+    portrait: '/assets/hero/magnus.png',
+    isExecutive: true,
+  },
+  {
+    name: 'Alfred Ankomah',
+    title: 'Vice Chairperson',
+    focus: 'Acts for the Chairperson and coordinates emergency meetings when required.',
+    portrait: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80',
+    isExecutive: true,
+  },
+  {
+    name: 'Georgina',
+    title: 'General Secretary',
+    focus: 'Correspondence, notices, and accurate minutes for MM, OM, and EMB sittings.',
     portrait: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80',
+    isExecutive: true,
   },
   {
-    name: 'Lola Mensah',
-    title: 'Head of Media & Storytelling',
-    focus: 'Media hub & archives',
-    portrait: 'https://images.unsplash.com/photo-1544723795-432537f5f40b?auto=format&fit=crop&w=600&q=80',
-  },
-  {
-    name: 'Kwame Owusu',
-    title: 'Chief Financial Steward',
-    focus: 'Payments & donor relations',
+    name: 'Evelyn Adu Gyamfi',
+    title: 'Vice General Secretary',
+    focus: 'Supports documentation, agenda preparation, and records continuity.',
     portrait: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80',
+    isExecutive: false,
+  },
+  {
+    name: 'Isaac Kofi Takor',
+    title: 'Treasurer / Financial Secretary',
+    focus: 'Receives dues, banks funds, and issues audited financial statements.',
+    portrait: 'https://images.unsplash.com/photo-1519345178453-4c7e3a976aa0?auto=format&fit=crop&w=600&q=80',
+    isExecutive: true,
+  },
+  {
+    name: 'Matthew Ntsiful',
+    title: 'Vice Treasurer',
+    focus: 'Ensures dual-control on collections and benevolence disbursements.',
+    portrait: '/assets/hero/mathew.png',
+    isExecutive: false,
+  },
+  {
+    name: 'Alfred Edusei',
+    title: 'Organizing Secretary',
+    focus: 'Mobilizes branches, turnout logistics, and volunteer rosters.',
+    portrait: '/assets/hero/Edusei.png',
+    isExecutive: true,
+  },
+  {
+    name: 'McDonald Som',
+    title: 'Public Relations Officer',
+    focus: 'Represents the society publicly and leads socio-economic partnerships.',
+    portrait: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80',
+    isExecutive: true,
+  },
+  {
+    name: 'Aaron Paha',
+    title: 'Public Relations Officer',
+    focus: 'Represents the society publicly and leads socio-economic partnerships.',
+    portrait: 'https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=600&q=80',
+    isExecutive: false,
+  },
+  {
+    name: 'Benjamin Doke',
+    title: 'Band Leader',
+    focus: 'Directs brass ensembles, music rehearsals, and parade cadence.',
+    portrait: '/assets/hero/doke.png',
+    isExecutive: false,
+  },
+  {
+    name: 'Teddy Abakah-Ansah Jnr',
+    title: 'Chief Tailor',
+    focus: 'Oversees costumes, fittings, and design continuity for annual collections.',
+    portrait: '/assets/hero/teddy.png',
+    isExecutive: false,
+  },
+  {
+    name: 'Richard Addo Sackah',
+    title: 'Chaplain',
+    focus: 'Spiritual care, devotionals, and pastoral guidance for members.',
+    portrait: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80',
+    isExecutive: false,
+  },
+  {
+    name: 'Malik Abdallah',
+    title: 'Operations Manager',
+    focus: 'Implements safety plans, turnout routes, and resource deployment.',
+    portrait: '/assets/hero/malik.png',
+    isExecutive: true,
+    imagePosition: 'center top',
+  },
+  {
+    name: 'Branch Leaders Council',
+    title: 'Regional Representatives',
+    focus: 'Provide ground intelligence from branches and enforce EMB resolutions.',
+    portrait: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=600&q=80',
+    isExecutive: false,
   },
 ];
 
@@ -600,7 +732,7 @@ export type Branch = {
 };
 
 // Helper function to generate human placeholder avatar based on seed
-const getLeaderAvatar = (seed: string) => 
+const getLeaderAvatar = (seed: string) =>
   `https://api.dicebear.com/7.x/personas/svg?seed=${encodeURIComponent(seed)}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`;
 
 export const branches: Branch[] = [
@@ -965,7 +1097,7 @@ export const newsFeed = [
 
 export const stats = [
   { label: 'Active members', value: '4,000+' },
-  { label: 'Global branches', value: '18' },
+  { label: 'Global branches', value: '30+' },
 ];
 
 export const dashboards: Record<

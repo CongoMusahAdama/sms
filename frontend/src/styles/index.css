@@ -200,12 +200,18 @@ a {
   backdrop-filter: none;
 }
 
+.site-header.homepage-header.header-scrolled {
+  background: var(--primary-blue);
+  backdrop-filter: saturate(120%) blur(6px);
+  box-shadow: 0 12px 30px rgba(0, 34, 102, 0.25);
+}
+
 .site-header.other-page-header {
   position: fixed;
-  background: transparent;
-  backdrop-filter: none;
+  background: var(--primary-blue);
+  backdrop-filter: saturate(120%) blur(6px);
   border-bottom: none;
-  box-shadow: none;
+  box-shadow: 0 12px 30px rgba(0, 34, 102, 0.25);
 }
 
 .site-header.other-page-header .brand {
@@ -1760,6 +1766,7 @@ a {
   margin: 0.5rem 0;
   flex: 1;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -4226,6 +4233,17 @@ a {
   margin: 0 0 1.5rem 0;
 }
 
+.motto-highlight {
+  color: var(--primary-blue);
+  font-weight: 700;
+}
+
+.identity-section-eagle {
+  border-left: 4px solid var(--primary-blue);
+  padding-left: 1rem;
+  margin-top: 1.5rem;
+}
+
 .read-more-button {
   display: inline-block;
   padding: 0.875rem 2rem;
@@ -5104,22 +5122,45 @@ a {
   gap: 1rem;
 }
 
-.social-links a {
+.contact-social-link {
   display: inline-flex;
   align-items: center;
-  padding: 0.75rem 1.25rem;
+  gap: 0.75rem;
+  padding: 0.85rem 1.5rem;
   background: var(--primary-blue);
   color: white;
-  border-radius: 0.75rem;
+  border-radius: 0.85rem;
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   width: fit-content;
 }
 
-.social-links a:hover {
+.contact-social-link:hover {
   background: var(--secondary-blue);
-  transform: translateX(4px);
+  transform: translateX(6px);
+  box-shadow: 0 8px 20px rgba(29, 104, 254, 0.2);
+}
+
+.contact-social-icon {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-social-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.contact-social-handle {
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
 .contact-grid {
@@ -5349,11 +5390,19 @@ a {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
-  
+
+  .site-header.homepage-header.header-scrolled {
+    background: var(--primary-blue);
+    backdrop-filter: saturate(120%) blur(6px);
+    -webkit-backdrop-filter: saturate(120%) blur(6px);
+    box-shadow: 0 12px 30px rgba(0, 34, 102, 0.25);
+  }
+
   .site-header.other-page-header {
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    background: var(--primary-blue);
+    backdrop-filter: saturate(120%) blur(6px);
+    -webkit-backdrop-filter: saturate(120%) blur(6px);
+    box-shadow: 0 12px 30px rgba(0, 34, 102, 0.25);
   }
 
   /* Add padding to account for fixed navbar */
@@ -6496,7 +6545,7 @@ a {
   bottom: 70px;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 1200;
 }
 
 .mobile-more-menu-overlay {
@@ -6507,6 +6556,7 @@ a {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   animation: fadeIn 0.2s ease;
+  z-index: 1198;
 }
 
 .mobile-more-menu-content {
@@ -6515,6 +6565,8 @@ a {
   padding: 1rem 0;
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
   animation: slideUp 0.3s ease;
+  position: relative;
+  z-index: 1201;
 }
 
 .mobile-more-menu-item {

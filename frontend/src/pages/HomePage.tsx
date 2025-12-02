@@ -36,6 +36,7 @@ const HomePage = () => {
   });
   const [showUnderDevelopment, setShowUnderDevelopment] = useState(false);
   const [selectedSponsorCategory, setSelectedSponsorCategory] = useState<'vendors' | 'sponsors' | 'partners' | 'band' | 'tv-radio' | 'others' | 'all'>('all');
+  const [selectedMembershipStep, setSelectedMembershipStep] = useState<number | null>(null);
 
   // Countdown timer to December 25th, 2025
   useEffect(() => {
@@ -173,30 +174,17 @@ const HomePage = () => {
     };
   }, []);
 
-  // Hero image carousel with 1-minute delay for hero1
+  // Hero image carousel - cycle through all images
   useEffect(() => {
-    let carouselInterval: ReturnType<typeof setInterval> | null = null;
-
-    // Show hero1 for 1 minute (60000ms) before starting carousel
-    const initialDelay = setTimeout(() => {
-      // After 1 minute, start cycling through hero4 and hero5
-      carouselInterval = setInterval(() => {
-        setCurrentHeroImage((prev) => {
-          // After hero1 (index 0), cycle between hero4 (index 1) and hero5 (index 2)
-          if (prev === 0) {
-            return 1; // Start with hero4
-          }
-          // Toggle between hero4 (1) and hero5 (2)
-          return prev === 1 ? 2 : 1;
-        });
-      }, 5000); // Change image every 5 seconds after initial delay
-    }, 60000); // 1 minute delay
+    const carouselInterval = setInterval(() => {
+      setCurrentHeroImage((prev) => {
+        // Cycle through all 3 images (hero1, hero4, hero5)
+        return (prev + 1) % 3;
+      });
+    }, 5000); // Change image every 5 seconds
 
     return () => {
-      clearTimeout(initialDelay);
-      if (carouselInterval) {
-        clearInterval(carouselInterval);
-      }
+      clearInterval(carouselInterval);
     };
   }, []);
 
@@ -359,6 +347,249 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* How to Become a Member Section */}
+      <section style={{
+        backgroundColor: '#f9fafb',
+        paddingTop: '5rem',
+        paddingBottom: '5rem',
+        marginTop: '4rem'
+      }}>
+        <div className="shell">
+          <div
+            ref={(el) => { headingRefs.current.set('how-to-join', el); }}
+            className={`section-heading-wrapper ${visibleHeadings.has('how-to-join') ? 'visible' : ''}`}
+          >
+            <SectionHeading
+              eyebrow="Join Us"
+              title="How to Become a Member"
+              description="Follow these simple steps to join the Supreme Masqueraders Society and become part of our vibrant community."
+            />
+          </div>
+
+          {/* Interactive Roadmap */}
+          <div style={{ marginTop: '4rem' }}>
+            {/* Horizontal Steps with Marquee */}
+            <div style={{
+              position: 'relative',
+              overflow: 'hidden',
+              marginBottom: '3rem',
+              paddingBottom: '1rem'
+            }}>
+              {/* Connecting Line */}
+              <div style={{
+                position: 'absolute',
+                top: '30px',
+                left: 0,
+                right: 0,
+                height: '3px',
+                backgroundColor: '#e5e7eb',
+                zIndex: 0
+              }} />
+
+              {/* Marquee Container */}
+              <div style={{
+                display: 'flex',
+                gap: '3rem',
+                animation: 'marquee-steps 20s linear infinite',
+                width: 'max-content'
+              }}>
+                {/* Duplicate the steps twice for seamless loop */}
+                {[...Array(2)].map((_, setIndex) => (
+                  <div key={setIndex} style={{
+                    display: 'flex',
+                    gap: '3rem',
+                    minWidth: 'fit-content'
+                  }}>
+                    {[
+                      {
+                        step: 1,
+                        title: 'Find a Branch',
+                        description: 'Locate the nearest Supreme Masquerade Society branch.'
+                      },
+                      {
+                        step: 2,
+                        title: 'Request to Join',
+                        description: 'Submit your membership request through the app.'
+                      },
+                      {
+                        step: 3,
+                        title: 'Get Approved',
+                        description: 'A branch officer reviews and accepts your request.'
+                      },
+                      {
+                        step: 4,
+                        title: 'Get Measured',
+                        description: 'Visit the branch to take your attire measurements.'
+                      },
+                      {
+                        step: 5,
+                        title: 'Pay & Secure',
+                        description: 'Make your attire payment to confirm your membership dress.'
+                      }
+                    ].map((item) => (
+                      <div
+                        key={`${setIndex}-${item.step}`}
+                        style={{
+                          minWidth: '200px',
+                          textAlign: 'center',
+                          position: 'relative',
+                          zIndex: 1,
+                          cursor: 'pointer'
+                        }}
+                        onClick={() => {
+                          setSelectedMembershipStep(selectedMembershipStep === item.step ? null : item.step);
+                        }}
+                      >
+                        {/* Step Circle */}
+                        <div style={{
+                          width: '60px',
+                          height: '60px',
+                          backgroundColor: '#1D68FE',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          margin: '0 auto 0.75rem',
+                          fontSize: '1.5rem',
+                          fontWeight: '700',
+                          color: 'white',
+                          boxShadow: '0 4px 12px rgba(29, 104, 254, 0.3)',
+                          border: '4px solid white',
+                          transition: 'all 0.3s ease'
+                        }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'scale(1.15)';
+                            e.currentTarget.style.boxShadow = '0 6px 20px rgba(29, 104, 254, 0.5)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'scale(1)';
+                            e.currentTarget.style.boxShadow = '0 4px 12px rgba(29, 104, 254, 0.3)';
+                          }}
+                        >
+                          {item.step}
+                        </div>
+
+                        {/* Step Title */}
+                        <p style={{
+                          fontSize: '0.875rem',
+                          fontWeight: '600',
+                          color: '#111827',
+                          margin: 0
+                        }}>{item.title}</p>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Step Details Card - Show only selected step */}
+            {selectedMembershipStep && (
+              <div style={{
+                marginTop: '2rem',
+                animation: 'fadeIn 0.3s ease'
+              }}>
+                {[
+                  {
+                    step: 1,
+                    title: 'Find a Branch',
+                    description: 'Locate the nearest Supreme Masquerade Society branch.'
+                  },
+                  {
+                    step: 2,
+                    title: 'Request to Join',
+                    description: 'Submit your membership request through the app.'
+                  },
+                  {
+                    step: 3,
+                    title: 'Get Approved',
+                    description: 'A branch officer reviews and accepts your request.'
+                  },
+                  {
+                    step: 4,
+                    title: 'Get Measured',
+                    description: 'Visit the branch to take your attire measurements.'
+                  },
+                  {
+                    step: 5,
+                    title: 'Pay & Secure',
+                    description: 'Make your attire payment to confirm your membership dress.'
+                  }
+                ]
+                  .filter(item => item.step === selectedMembershipStep)
+                  .map((item) => (
+                    <div
+                      key={item.step}
+                      style={{
+                        backgroundColor: 'white',
+                        borderRadius: '1rem',
+                        padding: '2.5rem',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                        border: '2px solid #1D68FE',
+                        maxWidth: '600px',
+                        margin: '0 auto'
+                      }}
+                    >
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem',
+                        marginBottom: '1.5rem'
+                      }}>
+                        <div style={{
+                          width: '50px',
+                          height: '50px',
+                          backgroundColor: '#1D68FE',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '1.5rem',
+                          fontWeight: '700',
+                          color: 'white',
+                          flexShrink: 0
+                        }}>
+                          {item.step}
+                        </div>
+                        <h3 style={{
+                          fontSize: '1.5rem',
+                          fontWeight: '700',
+                          color: '#111827',
+                          margin: 0
+                        }}>{item.title}</h3>
+                      </div>
+                      <p style={{
+                        fontSize: '1.125rem',
+                        color: '#6b7280',
+                        lineHeight: '1.8',
+                        margin: 0
+                      }}>{item.description}</p>
+                    </div>
+                  ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+
+        {/* Add CSS animation for marquee */}
+        <style>{`
+        @keyframes marquee-steps {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        
+        /* Pause animation on hover */
+        .shell > div > div:hover > div {
+          animation-play-state: paused;
+        }
+      `}</style>
+      </section >
+
       <section className="shell upcoming-events-section">
         <div
           ref={(el) => { headingRefs.current.set('upcoming-events', el); }}
@@ -404,7 +635,7 @@ const HomePage = () => {
           >
             <h2 className="sponsors-title">Trusted by customers, partners and the industry</h2>
           </div>
-          
+
           {/* Filter Tabs */}
           <div className="sponsor-filter-tabs">
             <button
@@ -506,491 +737,493 @@ const HomePage = () => {
         </div>
       </section>
 
-    <section className="stats-shell">
-      <div className="shell stats-grid">
-        {stats.map((item) => (
-          <article key={item.label}>
-            <p className="eyebrow">{item.label}</p>
-            <h3>{item.value}</h3>
-          </article>
-        ))}
-      </div>
-    </section>
+      <section className="stats-shell">
+        <div className="shell stats-grid">
+          {stats.map((item) => (
+            <article key={item.label}>
+              <p className="eyebrow">{item.label}</p>
+              <h3>{item.value}</h3>
+            </article>
+          ))}
+        </div>
+      </section>
 
-    <section className="shell">
-      <div
-        ref={(el) => { headingRefs.current.set('command-centers', el); }}
-        className={`section-heading-wrapper ${visibleHeadings.has('command-centers') ? 'visible' : ''}`}
-      >
-        <SectionHeading
-          eyebrow="Platform Features"
-          title="Discover what we got for you here"
-          description="Explore our comprehensive platform designed to enhance your experience with Supreme Masqueraders Society."
-        />
-      </div>
-      <div className="features-grid">
+      <section className="shell">
         <div
-          ref={(el) => {
-            featureRefs.current[0] = el;
-          }}
-          className={`feature-item ${visibleFeatures.includes(0) ? 'visible' : ''}`}
+          ref={(el) => { headingRefs.current.set('command-centers', el); }}
+          className={`section-heading-wrapper ${visibleHeadings.has('command-centers') ? 'visible' : ''}`}
         >
-          <div className="feature-icon-box">
-            <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
+          <SectionHeading
+            eyebrow="Platform Features"
+            title="Discover what we got for you here"
+            description="Explore our comprehensive platform designed to enhance your experience with Supreme Masqueraders Society."
+          />
+        </div>
+        <div className="features-grid">
+          <div
+            ref={(el) => {
+              featureRefs.current[0] = el;
+            }}
+            className={`feature-item ${visibleFeatures.includes(0) ? 'visible' : ''}`}
+          >
+            <div className="feature-icon-box">
+              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div className="feature-content">
+              <h3>Turnout outlines & real-time route tracking</h3>
+              <p>Coordinate outing logistics with live GPS tracking and route visualization</p>
+            </div>
           </div>
-          <div className="feature-content">
-            <h3>Turnout outlines & real-time route tracking</h3>
-            <p>Coordinate outing logistics with live GPS tracking and route visualization</p>
+          <div
+            ref={(el) => {
+              featureRefs.current[1] = el;
+            }}
+            className={`feature-item ${visibleFeatures.includes(1) ? 'visible' : ''}`}
+          >
+            <div className="feature-icon-box">
+              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div className="feature-content">
+              <h3>News feed (society-wide & branch-level)</h3>
+              <p>Stay updated with announcements and updates from all branches</p>
+            </div>
+          </div>
+          <div
+            ref={(el) => {
+              featureRefs.current[2] = el;
+            }}
+            className={`feature-item ${visibleFeatures.includes(2) ? 'visible' : ''}`}
+          >
+            <div className="feature-icon-box">
+              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div className="feature-content">
+              <h3>Branch management (membership requests & approvals)</h3>
+              <p>Streamline membership processes with automated approval workflows</p>
+            </div>
+          </div>
+          <div
+            ref={(el) => {
+              featureRefs.current[3] = el;
+            }}
+            className={`feature-item ${visibleFeatures.includes(3) ? 'visible' : ''}`}
+          >
+            <div className="feature-icon-box">
+              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <div className="feature-content">
+              <h3>Member forums / discussion boards</h3>
+              <p>Engage in meaningful discussions and share ideas with members</p>
+            </div>
+          </div>
+          <div
+            ref={(el) => {
+              featureRefs.current[4] = el;
+            }}
+            className={`feature-item ${visibleFeatures.includes(4) ? 'visible' : ''}`}
+          >
+            <div className="feature-icon-box">
+              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div className="feature-content">
+              <h3>Event listings, calendar, reminders & notifications</h3>
+              <p>Never miss an event with integrated calendar and smart reminders</p>
+            </div>
+          </div>
+          <div
+            ref={(el) => {
+              featureRefs.current[5] = el;
+            }}
+            className={`feature-item ${visibleFeatures.includes(5) ? 'visible' : ''}`}
+          >
+            <div className="feature-icon-box">
+              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+            <div className="feature-content">
+              <h3>Media hub with photos/videos, likes, comments, and internal sharing</h3>
+              <p>Share and discover memorable moments from events and activities</p>
+            </div>
           </div>
         </div>
-        <div
-          ref={(el) => {
-            featureRefs.current[1] = el;
-          }}
-          className={`feature-item ${visibleFeatures.includes(1) ? 'visible' : ''}`}
-        >
-          <div className="feature-icon-box">
-            <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-          </div>
-          <div className="feature-content">
-            <h3>News feed (society-wide & branch-level)</h3>
-            <p>Stay updated with announcements and updates from all branches</p>
-          </div>
-        </div>
-        <div
-          ref={(el) => {
-            featureRefs.current[2] = el;
-          }}
-          className={`feature-item ${visibleFeatures.includes(2) ? 'visible' : ''}`}
-        >
-          <div className="feature-icon-box">
-            <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          </div>
-          <div className="feature-content">
-            <h3>Branch management (membership requests & approvals)</h3>
-            <p>Streamline membership processes with automated approval workflows</p>
-          </div>
-        </div>
-        <div
-          ref={(el) => {
-            featureRefs.current[3] = el;
-          }}
-          className={`feature-item ${visibleFeatures.includes(3) ? 'visible' : ''}`}
-        >
-          <div className="feature-icon-box">
-            <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-          </div>
-          <div className="feature-content">
-            <h3>Member forums / discussion boards</h3>
-            <p>Engage in meaningful discussions and share ideas with members</p>
-          </div>
-        </div>
-        <div
-          ref={(el) => {
-            featureRefs.current[4] = el;
-          }}
-          className={`feature-item ${visibleFeatures.includes(4) ? 'visible' : ''}`}
-        >
-          <div className="feature-icon-box">
-            <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
-          </div>
-          <div className="feature-content">
-            <h3>Event listings, calendar, reminders & notifications</h3>
-            <p>Never miss an event with integrated calendar and smart reminders</p>
-          </div>
-        </div>
-        <div
-          ref={(el) => {
-            featureRefs.current[5] = el;
-          }}
-          className={`feature-item ${visibleFeatures.includes(5) ? 'visible' : ''}`}
-        >
-          <div className="feature-icon-box">
-            <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <circle cx="8.5" cy="8.5" r="1.5"></circle>
-              <polyline points="21 15 16 10 5 21"></polyline>
-            </svg>
-          </div>
-          <div className="feature-content">
-            <h3>Media hub with photos/videos, likes, comments, and internal sharing</h3>
-            <p>Share and discover memorable moments from events and activities</p>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section className="shell">
-      <div
-        ref={(el) => { headingRefs.current.set('event-highlights', el); }}
-        className={`section-heading-wrapper ${visibleHeadings.has('event-highlights') ? 'visible' : ''}`}
-      >
-        <SectionHeading
-          eyebrow="Upcoming experiences"
-          title="Event highlights & turnout routes"
-          description="Automate reminders, publish route tracking, and share staging details with every stakeholder."
-        />
-      </div>
-      {/* Route Tracking Section */}
-      <div className="route-tracking-section">
-        <div className="route-tracking-container">
-          <div className="route-map">
-            {/* Location Inputs */}
-            <div className="location-inputs">
-              <div className="location-input-wrapper">
-                <div className="location-radio start-radio"></div>
-                <div className="location-input-line"></div>
-                <div className="location-input-container">
-                  <input
-                    type="text"
-                    className="location-input"
-                    placeholder="Enter your location or use current"
-                    value={userLocation}
-                    onChange={(e) => setUserLocation(e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    className="location-detect-btn"
-                    onClick={getCurrentLocation}
-                    disabled={isLocating}
-                    title="Detect my location"
-                  >
-                    {isLocating ? (
-                      <svg className="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10" strokeOpacity="0.25"></circle>
-                        <path d="M12 2 A10 10 0 0 1 22 12" strokeLinecap="round"></path>
-                      </svg>
-                    ) : (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                      </svg>
-                    )}
-                  </button>
+      <section className="shell">
+        <div
+          ref={(el) => { headingRefs.current.set('event-highlights', el); }}
+          className={`section-heading-wrapper ${visibleHeadings.has('event-highlights') ? 'visible' : ''}`}
+        >
+          <SectionHeading
+            eyebrow="Upcoming experiences"
+            title="Event highlights & turnout routes"
+            description="Automate reminders, publish route tracking, and share staging details with every stakeholder."
+          />
+        </div>
+        {/* Route Tracking Section */}
+        <div className="route-tracking-section">
+          <div className="route-tracking-container">
+            <div className="route-map">
+              {/* Location Inputs */}
+              <div className="location-inputs">
+                <div className="location-input-wrapper">
+                  <div className="location-radio start-radio"></div>
+                  <div className="location-input-line"></div>
+                  <div className="location-input-container">
+                    <input
+                      type="text"
+                      className="location-input"
+                      placeholder="Enter your location or use current"
+                      value={userLocation}
+                      onChange={(e) => setUserLocation(e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      className="location-detect-btn"
+                      onClick={getCurrentLocation}
+                      disabled={isLocating}
+                      title="Detect my location"
+                    >
+                      {isLocating ? (
+                        <svg className="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10" strokeOpacity="0.25"></circle>
+                          <path d="M12 2 A10 10 0 0 1 22 12" strokeLinecap="round"></path>
+                        </svg>
+                      ) : (
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                  {locationError && (
+                    <div className="location-error">{locationError}</div>
+                  )}
                 </div>
-                {locationError && (
-                  <div className="location-error">{locationError}</div>
-                )}
-              </div>
-              <div className="location-input-wrapper">
-                <div className="location-radio end-radio"></div>
-                <div className="location-input-container">
-                  <input
-                    type="text"
-                    className="location-input"
-                    placeholder="Band current location"
-                    value="Band Location - Main Outing Route"
-                    readOnly
-                  />
-                  <div className="band-location-badge">
-                    <span className="status-dot"></span>
-                    <span>Live</span>
+                <div className="location-input-wrapper">
+                  <div className="location-radio end-radio"></div>
+                  <div className="location-input-container">
+                    <input
+                      type="text"
+                      className="location-input"
+                      placeholder="Band current location"
+                      value="Band Location - Main Outing Route"
+                      readOnly
+                    />
+                    <div className="band-location-badge">
+                      <span className="status-dot"></span>
+                      <span>Live</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Map Background */}
-            <div className="map-background">
-              <div className="map-grid"></div>
-              <div className="map-streets">
-                <div className="street horizontal street-1"></div>
-                <div className="street horizontal street-2"></div>
-                <div className="street horizontal street-3"></div>
-                <div className="street vertical street-4"></div>
-                <div className="street vertical street-5"></div>
-                <div className="street vertical street-6"></div>
+              {/* Map Background */}
+              <div className="map-background">
+                <div className="map-grid"></div>
+                <div className="map-streets">
+                  <div className="street horizontal street-1"></div>
+                  <div className="street horizontal street-2"></div>
+                  <div className="street horizontal street-3"></div>
+                  <div className="street vertical street-4"></div>
+                  <div className="street vertical street-5"></div>
+                  <div className="street vertical street-6"></div>
+                </div>
               </div>
-            </div>
 
-            {/* Band Starting Point (Visible but not on route) */}
-            <div className="band-start-point">
-              <div className="band-start-marker">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-              <span className="route-label">Band Started Here</span>
-            </div>
-
-            {/* Person's Current Location */}
-            <div className="person-location">
-              <div className="person-location-marker">
-                <div className="person-pulse"></div>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-            </div>
-
-            {/* Band's Current Location */}
-            <div className="band-current-location">
-              <div className="band-current-marker">
-                <div className="band-pulse"></div>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M12 6v6l4 2"></path>
-                </svg>
-              </div>
-              <span className="route-label">Band Location</span>
-            </div>
-
-            {/* Route from Person to Band */}
-            <div className="route-path-person-to-band">
-              <svg className="route-line" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
-                <path
-                  className="route-path-line-person"
-                  d="M 200 320 Q 250 280, 280 240 Q 300 200, 280 160 Q 260 120, 220 100"
-                  fill="none"
-                  stroke="#ff6b35"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <div className="route-tracking-dot-person"></div>
-            </div>
-          </div>
-          <div className="route-info">
-            <div className="route-info-header">
-              <h4>Live Route Tracking</h4>
-              <div className="route-status-badge active">
-                <span className="status-dot"></span>
-                <span>In Progress</span>
-              </div>
-            </div>
-            <div className="route-stats">
-              <div className="route-stat-card">
-                <div className="route-stat-icon">
+              {/* Band Starting Point (Visible but not on route) */}
+              <div className="band-start-point">
+                <div className="band-start-marker">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
                   </svg>
                 </div>
-                <div className="route-stat-content">
-                  <span className="route-stat-label">Distance to Band</span>
-                  <span className="route-stat-value">0.8 km</span>
-                </div>
+                <span className="route-label">Band Started Here</span>
               </div>
-              <div className="route-stat-card">
-                <div className="route-stat-icon">
+
+              {/* Person's Current Location */}
+              <div className="person-location">
+                <div className="person-location-marker">
+                  <div className="person-pulse"></div>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
                   </svg>
                 </div>
-                <div className="route-stat-content">
-                  <span className="route-stat-label">Walking Time</span>
-                  <span className="route-stat-value">10 min</span>
+              </div>
+
+              {/* Band's Current Location */}
+              <div className="band-current-location">
+                <div className="band-current-marker">
+                  <div className="band-pulse"></div>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 6v6l4 2"></path>
+                  </svg>
                 </div>
+                <span className="route-label">Band Location</span>
+              </div>
+
+              {/* Route from Person to Band */}
+              <div className="route-path-person-to-band">
+                <svg className="route-line" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+                  <path
+                    className="route-path-line-person"
+                    d="M 200 320 Q 250 280, 280 240 Q 300 200, 280 160 Q 260 120, 220 100"
+                    fill="none"
+                    stroke="#ff6b35"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <div className="route-tracking-dot-person"></div>
               </div>
             </div>
-            <div className="route-waypoints">
-              <h5 className="waypoints-title">Location Details</h5>
-              <div className="waypoint-list">
-                <div className="waypoint-item">
-                  <div className="waypoint-marker person">
+            <div className="route-info">
+              <div className="route-info-header">
+                <h4>Live Route Tracking</h4>
+                <div className="route-status-badge active">
+                  <span className="status-dot"></span>
+                  <span>In Progress</span>
+                </div>
+              </div>
+              <div className="route-stats">
+                <div className="route-stat-card">
+                  <div className="route-stat-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                       <circle cx="12" cy="10" r="3"></circle>
                     </svg>
                   </div>
-                  <div className="waypoint-details">
-                    <strong>Your Location</strong>
-                    <span>Current position</span>
+                  <div className="route-stat-content">
+                    <span className="route-stat-label">Distance to Band</span>
+                    <span className="route-stat-value">0.8 km</span>
                   </div>
                 </div>
-                <div className="waypoint-item">
-                  <div className="waypoint-marker band-current">
+                <div className="route-stat-card">
+                  <div className="route-stat-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M12 6v6l4 2"></path>
+                      <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
                   </div>
-                  <div className="waypoint-details">
-                    <strong>Band Current Location</strong>
-                    <span>Main Outing Route</span>
+                  <div className="route-stat-content">
+                    <span className="route-stat-label">Walking Time</span>
+                    <span className="route-stat-value">10 min</span>
                   </div>
                 </div>
-                <div className="waypoint-item">
-                  <div className="waypoint-marker band-start">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
+              </div>
+              <div className="route-waypoints">
+                <h5 className="waypoints-title">Location Details</h5>
+                <div className="waypoint-list">
+                  <div className="waypoint-item">
+                    <div className="waypoint-marker person">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                    </div>
+                    <div className="waypoint-details">
+                      <strong>Your Location</strong>
+                      <span>Current position</span>
+                    </div>
                   </div>
-                  <div className="waypoint-details">
-                    <strong>Band Started At</strong>
-                    <span>Supreme Secretariat</span>
+                  <div className="waypoint-item">
+                    <div className="waypoint-marker band-current">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                      </svg>
+                    </div>
+                    <div className="waypoint-details">
+                      <strong>Band Current Location</strong>
+                      <span>Main Outing Route</span>
+                    </div>
+                  </div>
+                  <div className="waypoint-item">
+                    <div className="waypoint-marker band-start">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                    </div>
+                    <div className="waypoint-details">
+                      <strong>Band Started At</strong>
+                      <span>Supreme Secretariat</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section className="partner-row">
-      <div className="shell">
-        <p className="eyebrow">Partners & supporters</p>
-        <div>
-          {partners.map((partner) => (
-            <span key={partner}>{partner}</span>
+      <section className="partner-row">
+        <div className="shell">
+          <p className="eyebrow">Partners & supporters</p>
+          <div>
+            {partners.map((partner) => (
+              <span key={partner}>{partner}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="shell">
+        <div
+          ref={(el) => { headingRefs.current.set('gallery', el); }}
+          className={`section-heading-wrapper ${visibleHeadings.has('gallery') ? 'visible' : ''}`}
+        >
+          <SectionHeading
+            eyebrow="Media hub"
+            title="Featured gallery moments"
+            description="Pit-stops across outings, mentorship clinics, and diaspora showcases."
+          />
+        </div>
+        <div className="gallery-grid">
+          {(() => {
+            // Group images by year
+            const byYear = galleryItems.reduce((acc, item) => {
+              if (!acc[item.year]) acc[item.year] = [];
+              acc[item.year].push(item);
+              return acc;
+            }, {} as Record<number, typeof galleryItems>);
+
+            // Get all years sorted (newest first)
+            const years = Object.keys(byYear)
+              .map(Number)
+              .sort((a, b) => b - a);
+
+            // Select images from each year to ensure diversity
+            const selected: typeof galleryItems = [];
+            const imagesPerYear = Math.ceil(20 / years.length);
+
+            years.forEach((year) => {
+              const yearImages = byYear[year];
+              // Shuffle and take up to imagesPerYear from each year
+              const shuffled = [...yearImages].sort(() => Math.random() - 0.5);
+              selected.push(...shuffled.slice(0, imagesPerYear));
+            });
+
+            // If we have less than 20, fill with more from all years
+            if (selected.length < 20) {
+              const remaining = galleryItems
+                .filter((item) => !selected.some((s) => s.id === item.id))
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 20 - selected.length);
+              selected.push(...remaining);
+            }
+
+            // Shuffle final selection and limit to 20
+            return selected
+              .sort(() => Math.random() - 0.5)
+              .slice(0, 20)
+              .map((item) => (
+                <figure key={item.id} className="gallery-card">
+                  <img src={item.image} alt={item.caption} loading="lazy" />
+                  <figcaption>
+                    <p className="eyebrow">{item.outing}</p>
+                    <h3>{item.caption}</h3>
+                    <span>{item.mediaType.toUpperCase()}</span>
+                  </figcaption>
+                </figure>
+              ));
+          })()}
+        </div>
+      </section>
+
+      <section className="shell">
+        <div
+          ref={(el) => { headingRefs.current.set('news-feed', el); }}
+          className={`section-heading-wrapper ${visibleHeadings.has('news-feed') ? 'visible' : ''}`}
+        >
+          <SectionHeading
+            eyebrow="News feed"
+            title="Society & branch-wide updates"
+            description="Stay informed with automatic reminders, FCM pushes, and Arkasel notifications."
+          />
+        </div>
+        <div className="news-grid">
+          {newsFeed.map((item) => (
+            <article key={item.title} className="card">
+              <p className="eyebrow">{item.branch}</p>
+              <h3>{item.title}</h3>
+              <p>{item.summary}</p>
+              <span>{item.postedOn}</span>
+            </article>
           ))}
         </div>
-      </div>
-    </section>
-
-    <section className="shell">
-      <div
-        ref={(el) => { headingRefs.current.set('gallery', el); }}
-        className={`section-heading-wrapper ${visibleHeadings.has('gallery') ? 'visible' : ''}`}
-      >
-        <SectionHeading
-          eyebrow="Media hub"
-          title="Featured gallery moments"
-          description="Pit-stops across outings, mentorship clinics, and diaspora showcases."
-        />
-      </div>
-      <div className="gallery-grid">
-        {(() => {
-          // Group images by year
-          const byYear = galleryItems.reduce((acc, item) => {
-            if (!acc[item.year]) acc[item.year] = [];
-            acc[item.year].push(item);
-            return acc;
-          }, {} as Record<number, typeof galleryItems>);
-
-          // Get all years sorted (newest first)
-          const years = Object.keys(byYear)
-            .map(Number)
-            .sort((a, b) => b - a);
-
-          // Select images from each year to ensure diversity
-          const selected: typeof galleryItems = [];
-          const imagesPerYear = Math.ceil(20 / years.length);
-
-          years.forEach((year) => {
-            const yearImages = byYear[year];
-            // Shuffle and take up to imagesPerYear from each year
-            const shuffled = [...yearImages].sort(() => Math.random() - 0.5);
-            selected.push(...shuffled.slice(0, imagesPerYear));
-          });
-
-          // If we have less than 20, fill with more from all years
-          if (selected.length < 20) {
-            const remaining = galleryItems
-              .filter((item) => !selected.some((s) => s.id === item.id))
-              .sort(() => Math.random() - 0.5)
-              .slice(0, 20 - selected.length);
-            selected.push(...remaining);
-          }
-
-          // Shuffle final selection and limit to 20
-          return selected
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 20)
-            .map((item) => (
-              <figure key={item.id} className="gallery-card">
-                <img src={item.image} alt={item.caption} loading="lazy" />
-                <figcaption>
-                  <p className="eyebrow">{item.outing}</p>
-                  <h3>{item.caption}</h3>
-                  <span>{item.mediaType.toUpperCase()}</span>
-                </figcaption>
-              </figure>
-            ));
-        })()}
-      </div>
-    </section>
-
-    <section className="shell">
-      <div
-        ref={(el) => { headingRefs.current.set('news-feed', el); }}
-        className={`section-heading-wrapper ${visibleHeadings.has('news-feed') ? 'visible' : ''}`}
-      >
-        <SectionHeading
-          eyebrow="News feed"
-          title="Society & branch-wide updates"
-          description="Stay informed with automatic reminders, FCM pushes, and Arkasel notifications."
-        />
-      </div>
-      <div className="news-grid">
-        {newsFeed.map((item) => (
-          <article key={item.title} className="card">
-            <p className="eyebrow">{item.branch}</p>
-            <h3>{item.title}</h3>
-            <p>{item.summary}</p>
-            <span>{item.postedOn}</span>
-          </article>
-        ))}
-      </div>
-    </section>
+      </section>
 
       <PageHero
-      eyebrow="All-in-one platform"
-      title="Streamline all branch management, turnouts, and stay updated with relevant info in a unified platform."
-    >
-      <div className="cta-stack">
-        <button
-          type="button"
-          className="primary-button"
-          onClick={() => setShowUnderDevelopment(true)}
-        >
-          Preview dashboards
-        </button>
-        <Link to="/contact" className="ghost-button">
-          Talk to our team
-        </Link>
-      </div>
+        eyebrow="All-in-one platform"
+        title="Streamline all branch management, turnouts, and stay updated with relevant info in a unified platform."
+      >
+        <div className="cta-stack">
+          <button
+            type="button"
+            className="primary-button"
+            onClick={() => setShowUnderDevelopment(true)}
+          >
+            Preview dashboards
+          </button>
+          <Link to="/contact" className="ghost-button">
+            Talk to our team
+          </Link>
+        </div>
       </PageHero>
 
       {/* Event Image Modal */}
-      {selectedEvent && (
-        <div className="event-modal-overlay" onClick={() => setSelectedEvent(null)}>
-          <div className="event-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button
-              type="button"
-              className="event-modal-close"
-              onClick={() => setSelectedEvent(null)}
-              aria-label="Close modal"
-            >
-              ×
-            </button>
-            <img src={selectedEvent.image} alt={selectedEvent.title} className="event-modal-image" />
-            <div className="event-modal-info">
-              <p className="eyebrow">{selectedEvent.type}</p>
-              <h2>{selectedEvent.title}</h2>
-              <p className="event-modal-location">{selectedEvent.location}</p>
-              <p className="event-modal-description">
-                {selectedEvent.description || 'Join us for this exciting celebration of our cultural heritage and community spirit.'}
-              </p>
-              <span className="event-modal-date">{selectedEvent.date}</span>
+      {
+        selectedEvent && (
+          <div className="event-modal-overlay" onClick={() => setSelectedEvent(null)}>
+            <div className="event-modal-content" onClick={(e) => e.stopPropagation()}>
+              <button
+                type="button"
+                className="event-modal-close"
+                onClick={() => setSelectedEvent(null)}
+                aria-label="Close modal"
+              >
+                ×
+              </button>
+              <img src={selectedEvent.image} alt={selectedEvent.title} className="event-modal-image" />
+              <div className="event-modal-info">
+                <p className="eyebrow">{selectedEvent.type}</p>
+                <h2>{selectedEvent.title}</h2>
+                <p className="event-modal-location">{selectedEvent.location}</p>
+                <p className="event-modal-description">
+                  {selectedEvent.description || 'Join us for this exciting celebration of our cultural heritage and community spirit.'}
+                </p>
+                <span className="event-modal-date">{selectedEvent.date}</span>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       <UnderDevelopmentModal
         isOpen={showUnderDevelopment}

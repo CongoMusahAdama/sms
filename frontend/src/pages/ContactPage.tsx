@@ -1,5 +1,6 @@
 import PageHero from '../components/PageHero';
 import SectionHeading from '../components/SectionHeading';
+import { aboutContent } from '../data/content';
 
 const ContactPage = () => (
   <>
@@ -14,21 +15,21 @@ const ContactPage = () => (
         <SectionHeading
           eyebrow="Connect"
           title="We are always listening"
-          description="Email hello@suprememasq.org or call +233 55 123 4567. Follow @suprememasq on Instagram, TikTok, Twitter, and LinkedIn."
+          description={`Email ${aboutContent.contact.email} or call ${aboutContent.contact.phone}. Follow us on our social media platforms.`}
           align="left"
         />
         <div className="contact-meta">
           <div>
             <p className="eyebrow">HQ Address</p>
-            <p>Heritage House, 12 Artists Lane, Accra</p>
+            <p>{aboutContent.contact.location}</p>
           </div>
           <div>
-            <p className="eyebrow">Partnerships</p>
-            <p>partners@suprememasq.org</p>
+            <p className="eyebrow">Email</p>
+            <p>{aboutContent.contact.email}</p>
           </div>
           <div>
-            <p className="eyebrow">Media</p>
-            <p>press@suprememasq.org</p>
+            <p className="eyebrow">Phone</p>
+            <p>{aboutContent.contact.phone}</p>
           </div>
         </div>
       </div>
@@ -36,11 +37,11 @@ const ContactPage = () => (
       <form className="contact-form card">
         <label>
           Full name
-          <input type="text" placeholder="Ama K. / Branch officer" required />
+          <input type="text" placeholder="Your full name" required />
         </label>
         <label>
           Email
-          <input type="email" placeholder="you@suprememasq.org" required />
+          <input type="email" placeholder="your.email@example.com" required />
         </label>
         <label>
           Topic
