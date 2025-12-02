@@ -232,8 +232,8 @@ const AboutPage = () => {
               border: '1px solid rgba(29, 104, 254, 0.2)'
             }}>
               <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-                <h3 style={{ fontSize: '1.75rem', fontWeight: '700', marginBottom: '0.75rem', color: '#1D68FE' }}>Anniversary Projects</h3>
-                <p style={{ fontSize: '1rem', maxWidth: '600px', margin: '0 auto', color: '#6b7280' }}>
+                <h3 className="anniversary-title" style={{ fontWeight: '700', marginBottom: '0.75rem', color: '#1D68FE' }}>Anniversary Projects</h3>
+                <p className="anniversary-description" style={{ maxWidth: '600px', margin: '0 auto', color: '#6b7280' }}>
                   Initiatives designed to foster cohesion, academic excellence, and community wellness.
                 </p>
               </div>
@@ -268,10 +268,10 @@ const AboutPage = () => {
                     }}>
                       <span style={{ fontWeight: 'bold', fontSize: '1rem' }}>{index + 1}</span>
                     </div>
-                    <h4 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '0.5rem', color: '#111827' }}>
+                    <h4 className="project-title" style={{ fontWeight: '700', marginBottom: '0.5rem', color: '#111827' }}>
                       {project.title}
                     </h4>
-                    <p style={{ fontSize: '0.9rem', color: '#6b7280', lineHeight: '1.6', margin: 0 }}>
+                    <p className="project-description" style={{ color: '#6b7280', lineHeight: '1.6', margin: 0 }}>
                       {project.description}
                     </p>
                   </div>

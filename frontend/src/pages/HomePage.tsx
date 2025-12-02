@@ -369,7 +369,7 @@ const HomePage = () => {
           {/* Interactive Roadmap */}
           <div style={{ marginTop: '4rem' }}>
             {/* Horizontal Steps with Marquee */}
-            <div style={{
+            <div className="membership-marquee-wrapper" style={{
               position: 'relative',
               overflow: 'hidden',
               marginBottom: '3rem',
@@ -387,19 +387,10 @@ const HomePage = () => {
               }} />
 
               {/* Marquee Container */}
-              <div style={{
-                display: 'flex',
-                gap: '3rem',
-                animation: 'marquee-steps 20s linear infinite',
-                width: 'max-content'
-              }}>
-                {/* Duplicate the steps twice for seamless loop */}
+              <div className="membership-marquee-track">
+                {/* Duplicate the steps twice for seamless loop on mobile */}
                 {[...Array(2)].map((_, setIndex) => (
-                  <div key={setIndex} style={{
-                    display: 'flex',
-                    gap: '3rem',
-                    minWidth: 'fit-content'
-                  }}>
+                  <div key={setIndex} className={`membership-set ${setIndex === 1 ? 'membership-set-duplicate' : ''}`}>
                     {[
                       {
                         step: 1,
@@ -429,53 +420,18 @@ const HomePage = () => {
                     ].map((item) => (
                       <div
                         key={`${setIndex}-${item.step}`}
-                        style={{
-                          minWidth: '200px',
-                          textAlign: 'center',
-                          position: 'relative',
-                          zIndex: 1,
-                          cursor: 'pointer'
-                        }}
+                        className="membership-step-item"
                         onClick={() => {
                           setSelectedMembershipStep(selectedMembershipStep === item.step ? null : item.step);
                         }}
                       >
                         {/* Step Circle */}
-                        <div style={{
-                          width: '60px',
-                          height: '60px',
-                          backgroundColor: '#1D68FE',
-                          borderRadius: '50%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          margin: '0 auto 0.75rem',
-                          fontSize: '1.5rem',
-                          fontWeight: '700',
-                          color: 'white',
-                          boxShadow: '0 4px 12px rgba(29, 104, 254, 0.3)',
-                          border: '4px solid white',
-                          transition: 'all 0.3s ease'
-                        }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'scale(1.15)';
-                            e.currentTarget.style.boxShadow = '0 6px 20px rgba(29, 104, 254, 0.5)';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = 'scale(1)';
-                            e.currentTarget.style.boxShadow = '0 4px 12px rgba(29, 104, 254, 0.3)';
-                          }}
-                        >
+                        <div className="membership-step-circle">
                           {item.step}
                         </div>
 
                         {/* Step Title */}
-                        <p style={{
-                          fontSize: '0.875rem',
-                          fontWeight: '600',
-                          color: '#111827',
-                          margin: 0
-                        }}>{item.title}</p>
+                        <p className="membership-step-title">{item.title}</p>
                       </div>
                     ))}
                   </div>
@@ -574,6 +530,87 @@ const HomePage = () => {
 
         {/* Add CSS animation for marquee */}
         <style>{`
+        .membership-marquee-track {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+        }
+        
+        .membership-set {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          gap: 1rem;
+        }
+        
+        .membership-set-duplicate {
+          display: none;
+        }
+
+        .membership-step-item {
+          min-width: 120px;
+          text-align: center;
+          position: relative;
+          z-index: 1;
+          cursor: pointer;
+          flex: 1;
+        }
+
+        .membership-step-circle {
+          width: 60px;
+          height: 60px;
+          background-color: #1D68FE;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 0.75rem;
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: white;
+          box-shadow: 0 4px 12px rgba(29, 104, 254, 0.3);
+          border: 4px solid white;
+          transition: all 0.3s ease;
+        }
+
+        .membership-step-title {
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: #111827;
+          margin: 0;
+        }
+
+        .membership-step-item:hover .membership-step-circle {
+          transform: scale(1.15);
+          box-shadow: 0 6px 20px rgba(29, 104, 254, 0.5);
+        }
+
+        @media (max-width: 768px) {
+          .membership-marquee-track {
+            display: flex;
+            gap: 3rem;
+            width: max-content;
+            animation: marquee-steps 20s linear infinite;
+            justify-content: flex-start;
+          }
+
+          .membership-set {
+            display: flex;
+            gap: 3rem;
+            min-width: fit-content;
+            width: auto;
+          }
+
+          .membership-set-duplicate {
+            display: flex;
+          }
+          
+          .membership-step-item {
+            min-width: 200px;
+            flex: none;
+          }
+        }
+
         @keyframes marquee-steps {
           0% {
             transform: translateX(0);
@@ -584,7 +621,7 @@ const HomePage = () => {
         }
         
         /* Pause animation on hover */
-        .shell > div > div:hover > div {
+        .membership-marquee-wrapper:hover .membership-marquee-track {
           animation-play-state: paused;
         }
       `}</style>

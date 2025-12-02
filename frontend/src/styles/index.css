@@ -424,12 +424,10 @@ a {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.35) 0%,
-    rgba(0, 0, 0, 0.25) 50%,
-    rgba(0, 0, 0, 0.45) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.25) 50%,
+      rgba(0, 0, 0, 0.45) 100%);
   z-index: 0;
 }
 
@@ -472,10 +470,13 @@ a {
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 4px 15px rgba(252, 19, 19, 0.4);
     transform: scale(1);
   }
+
   50% {
     box-shadow: 0 6px 20px rgba(252, 19, 19, 0.6);
     transform: scale(1.02);
@@ -503,6 +504,7 @@ a {
     transform: translateX(400px);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -548,9 +550,12 @@ a {
 }
 
 @keyframes bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-5px);
   }
@@ -654,9 +659,12 @@ a {
 }
 
 @keyframes countdownPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
@@ -678,9 +686,12 @@ a {
 }
 
 @keyframes blink {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.7;
   }
+
   50% {
     opacity: 1;
   }
@@ -748,6 +759,7 @@ a {
     opacity: 0;
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -755,15 +767,18 @@ a {
 }
 
 @keyframes shimmerGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
-                 0 0 20px rgba(29, 104, 254, 0.3),
-                 0 0 30px rgba(29, 104, 254, 0.2);
+      0 0 20px rgba(29, 104, 254, 0.3),
+      0 0 30px rgba(29, 104, 254, 0.2);
   }
+
   50% {
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
-                 0 0 40px rgba(29, 104, 254, 0.6),
-                 0 0 60px rgba(29, 104, 254, 0.4);
+      0 0 40px rgba(29, 104, 254, 0.6),
+      0 0 60px rgba(29, 104, 254, 0.4);
   }
 }
 
@@ -891,6 +906,7 @@ a {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -900,6 +916,7 @@ a {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
     visibility: hidden;
@@ -1252,20 +1269,16 @@ a {
   overflow: hidden;
   margin-top: 2rem;
   padding: 1.5rem 0;
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
+  mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
 }
 
 .impact-track {
@@ -1279,6 +1292,7 @@ a {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -1360,20 +1374,16 @@ a {
   overflow: hidden;
   margin-top: 3rem;
   padding: 2rem 0;
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
+  mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
 }
 
 .sponsors-track {
@@ -1390,6 +1400,7 @@ a {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -1446,6 +1457,7 @@ a {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1539,9 +1551,11 @@ a {
     transform: scale(0) rotate(-180deg);
     opacity: 0;
   }
+
   60% {
     transform: scale(1.1) rotate(10deg);
   }
+
   100% {
     transform: scale(1) rotate(0deg);
     opacity: 1;
@@ -1557,6 +1571,7 @@ a {
     opacity: 0;
     transform: translateX(-10px);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -2010,6 +2025,7 @@ a {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -2062,7 +2078,7 @@ a {
 .map-grid {
   position: absolute;
   inset: 0;
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 30px 30px;
@@ -2140,6 +2156,7 @@ a {
     transform: scale(1);
     opacity: 1;
   }
+
   100% {
     transform: scale(2);
     opacity: 0;
@@ -2250,9 +2267,11 @@ a {
   0% {
     stroke-dashoffset: 400;
   }
+
   50% {
     stroke-dashoffset: 0;
   }
+
   100% {
     stroke-dashoffset: 400;
   }
@@ -2276,21 +2295,25 @@ a {
     left: 20%;
     transform: translate(-50%, -50%);
   }
+
   25% {
     top: 55%;
     left: 30%;
     transform: translate(-50%, -50%);
   }
+
   50% {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
   75% {
     top: 25%;
     left: 60%;
     transform: translate(-50%, -50%);
   }
+
   100% {
     top: 20%;
     left: 75%;
@@ -2386,10 +2409,13 @@ a {
 }
 
 @keyframes pulseMarker {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 4px 12px rgba(252, 19, 19, 0.3);
   }
+
   50% {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(252, 19, 19, 0.5);
@@ -2433,9 +2459,11 @@ a {
   0% {
     stroke-dashoffset: 600;
   }
+
   50% {
     stroke-dashoffset: 0;
   }
+
   100% {
     stroke-dashoffset: 600;
   }
@@ -2461,22 +2489,27 @@ a {
     top: 92%;
     left: 50%;
   }
+
   20% {
     top: 8%;
     left: 20%;
   }
+
   40% {
     top: 8%;
     left: 50%;
   }
+
   60% {
     top: 8%;
     left: 80%;
   }
+
   80% {
     top: 92%;
     left: 50%;
   }
+
   100% {
     top: 92%;
     left: 50%;
@@ -2528,10 +2561,13 @@ a {
 }
 
 @keyframes pulseStatus {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.7;
     transform: scale(1.2);
@@ -2806,6 +2842,7 @@ a {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -2829,6 +2866,7 @@ a {
     transform: translateY(50px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -3829,7 +3867,7 @@ a {
   margin: 0 0 0.5rem 0;
 }
 
-.map-content > p {
+.map-content>p {
   color: var(--muted);
   margin: 0 0 1.5rem 0;
 }
@@ -4410,20 +4448,16 @@ a {
   position: relative;
   overflow: hidden;
   padding: 2rem 0;
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
+  mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
 }
 
 .awards-track {
@@ -4437,6 +4471,7 @@ a {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -6344,6 +6379,7 @@ a {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -6366,6 +6402,7 @@ a {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -6603,6 +6640,7 @@ a {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -6612,6 +6650,7 @@ a {
   from {
     transform: translateY(100%);
   }
+
   to {
     transform: translateY(0);
   }
@@ -6624,3 +6663,82 @@ a {
   }
 }
 
+
+/* Anniversary Projects Desktop Styles */
+.anniversary-title {
+  font-size: 1.75rem;
+}
+
+.anniversary-description {
+  font-size: 1rem;
+}
+
+.project-title {
+  font-size: 1.1rem;
+}
+
+.project-description {
+  font-size: 0.9rem;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+    /* Reduce base font size */
+  }
+
+  body {
+    font-size: 0.95rem;
+    /* Slightly smaller body text */
+  }
+
+  h1 {
+    font-size: 2rem !important;
+    /* Force smaller H1 */
+  }
+
+  h2 {
+    font-size: 1.75rem !important;
+    /* Force smaller H2 */
+  }
+
+  h3 {
+    font-size: 1.5rem !important;
+    /* Force smaller H3 */
+  }
+
+  p {
+    font-size: 0.95rem !important;
+  }
+
+  .shell {
+    width: 92vw;
+    padding: 0 1rem;
+  }
+
+  .section-heading {
+    margin: 3rem 0 1.5rem;
+  }
+
+  /* Anniversary Projects Mobile Optimization */
+  .anniversary-projects {
+    padding: 2rem 1rem !important;
+    margin-top: 3rem !important;
+    border-radius: 1.5rem !important;
+  }
+
+  .anniversary-projects h3 {
+    font-size: 1.5rem !important;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    /* Force single column */
+    gap: 1rem !important;
+  }
+
+  .project-item {
+    padding: 1.25rem !important;
+  }
+}
