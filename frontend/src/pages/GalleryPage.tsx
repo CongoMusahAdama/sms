@@ -22,16 +22,18 @@ const GalleryPage = () => {
     return acc;
   }, {} as Record<string, { year: number; outing: string; date: string; items: typeof galleryItems }>);
 
-  const albums = Object.values(groupedByOuting);
+  const albums = Object.values(groupedByOuting).filter(album =>
+    selectedYear === 'all' || album.year === selectedYear
+  );
 
   // Filter items based on selected year and album
-  let filteredItems = selectedYear === 'all' 
-    ? galleryItems 
+  let filteredItems = selectedYear === 'all'
+    ? galleryItems
     : galleryItems.filter(item => item.year === selectedYear);
 
   // If an album is selected, filter to that album's items
   if (selectedAlbum) {
-    const selectedAlbumData = albums.find((a, idx) => `${a.year}-${a.outing}-${idx}` === selectedAlbum);
+    const selectedAlbumData = albums.find((a) => `${a.year}-${a.outing}` === selectedAlbum);
     if (selectedAlbumData) {
       filteredItems = selectedAlbumData.items;
     }
@@ -57,7 +59,7 @@ const GalleryPage = () => {
   // Save image to device
   const saveImage = async () => {
     if (!selectedImage) return;
-    
+
     try {
       const response = await fetch(selectedImage.image);
       const blob = await response.blob();
@@ -83,7 +85,7 @@ const GalleryPage = () => {
         const response = await fetch(selectedImage.image);
         const blob = await response.blob();
         const file = new File([blob], `${selectedImage.caption}.png`, { type: blob.type });
-        
+
         await navigator.share({
           title: selectedImage.caption,
           text: `Check out this photo from ${selectedImage.outing}`,
@@ -119,13 +121,13 @@ const GalleryPage = () => {
           title="Browse by Year & Outing"
           description="Explore our collection of photos organized by year and event outings."
         />
-        
+
         {/* Filter Bar */}
         <div className="gallery-filter-bar">
           <button
             type="button"
             className={`filter-btn ${selectedYear === 'all' ? 'active' : ''}`}
-            onClick={() => setSelectedYear('all')}
+            onClick={() => { setSelectedYear('all'); setSelectedAlbum(null); }}
           >
             All Years
           </button>
@@ -134,7 +136,7 @@ const GalleryPage = () => {
               key={year}
               type="button"
               className={`filter-btn ${selectedYear === year ? 'active' : ''}`}
-              onClick={() => setSelectedYear(year)}
+              onClick={() => { setSelectedYear(year); setSelectedAlbum(null); }}
             >
               {year}
             </button>
@@ -143,11 +145,11 @@ const GalleryPage = () => {
 
         {/* Albums Grid */}
         <div className="albums-container">
-          {albums.map((album, albumIndex) => {
-            const albumKey = `${album.year}-${album.outing}-${albumIndex}`;
+          {albums.map((album) => {
+            const albumKey = `${album.year}-${album.outing}`;
             return (
-              <div 
-                key={albumKey} 
+              <div
+                key={albumKey}
                 className="album-card"
                 onClick={() => {
                   setSelectedAlbum(albumKey);
@@ -178,15 +180,15 @@ const GalleryPage = () => {
         <div className="all-photos-section">
           <div className="section-subtitle-wrapper">
             <h3 className="section-subtitle">
-              {selectedAlbum 
+              {selectedAlbum
                 ? (() => {
-                    const selectedAlbumData = albums.find((a, idx) => `${a.year}-${a.outing}-${idx}` === selectedAlbum);
-                    return selectedAlbumData ? `Photos from ${selectedAlbumData.outing} ${selectedAlbumData.year}` : 'All Photos';
-                  })()
+                  const selectedAlbumData = albums.find((a) => `${a.year}-${a.outing}` === selectedAlbum);
+                  return selectedAlbumData ? `Photos from ${selectedAlbumData.outing} ${selectedAlbumData.year}` : 'All Photos';
+                })()
                 : 'All Photos'}
             </h3>
             {selectedAlbum && (
-              <button 
+              <button
                 type="button"
                 onClick={() => {
                   setSelectedAlbum(null);
@@ -200,8 +202,8 @@ const GalleryPage = () => {
           </div>
           <div className="gallery-grid">
             {filteredItems.map((item) => (
-              <figure 
-                key={item.id} 
+              <figure
+                key={item.id}
                 className="gallery-card"
                 onClick={() => setSelectedImage(item)}
                 style={{ cursor: 'pointer' }}

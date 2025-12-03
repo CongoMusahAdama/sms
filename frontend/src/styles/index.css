@@ -4604,6 +4604,82 @@ a {
   margin-top: 1.5rem;
 }
 
+/* Our Journey Section */
+.about-journey-section {
+  padding: 6rem 0;
+  background: #fff;
+}
+
+.journey-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.journey-content {
+  order: 2;
+}
+
+.journey-image-wrapper {
+  order: 1;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.journey-image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.journey-image-wrapper:hover img {
+  transform: scale(1.05);
+}
+
+.journey-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--dark-text);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.journey-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.journey-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0;
+}
+
+.text-highlight-blue {
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+@media (max-width: 968px) {
+  .journey-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .journey-content {
+    order: 1;
+  }
+
+  .journey-image-wrapper {
+    order: 2;
+  }
+}
+
 .milestone-item {
   padding: 1.5rem;
   background: white;

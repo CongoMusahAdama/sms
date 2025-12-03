@@ -83,6 +83,36 @@ const AboutPage = () => {
         </div>
       </section>
 
+      {/* Our Journey Section */}
+      <section className="about-journey-section">
+        <div className="shell">
+          <div className="journey-layout">
+            <div className="journey-content">
+              <h2 className="journey-title">{aboutContent.ourStory.journey.title}</h2>
+              <div className="journey-text">
+                {aboutContent.ourStory.journey.paragraphs.map((paragraph, index) => {
+                  // Helper to highlight specific words
+                  const highlightText = (text: string) => {
+                    const parts = text.split(/(\beagle\b|\d+(?:,\d+)*(?:s)?)/gi);
+                    return parts.map((part, i) => {
+                      if (part.toLowerCase() === 'eagle' || /^\d+(?:,\d+)*(?:s)?$/.test(part)) {
+                        return <span key={i} className="text-highlight-blue">{part}</span>;
+                      }
+                      return part;
+                    });
+                  };
+
+                  return <p key={index}>{highlightText(paragraph)}</p>;
+                })}
+              </div>
+            </div>
+            <div className="journey-image-wrapper">
+              <img src="/assets/hero/founders.png" alt="Founders of Supreme Masquerade Society" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 25th Anniversary Section */}
       <section className="about-anniversary-section" style={{ padding: '6rem 0', backgroundColor: '#f8fafc' }}>
         <div className="shell">

@@ -42,6 +42,18 @@ export const aboutContent = {
       { year: '2020', event: 'Celebrated 20 years of cultural preservation' },
       { year: '2024', event: 'Reached 4,000+ members across 30+ branches' },
     ],
+    journey: {
+      title: 'Our Journey: From Setbacks to Strength',
+      paragraphs: [
+        'The Supreme Masquerade Society has walked a path filled with challenges, determination, and remarkable comebacks. When the group first began in the early 2000s, the passion was strong—but the journey was far from smooth. After starting with hope and excitement, the society went off for a solid three years.',
+        'They returned with renewed strength, only to face another setback… and another. Three consecutive times, the group attempted a comeback and each time they couldn’t sustain the momentum. Many people doubted them, some mocked them, and others believed the dream had ended.',
+        'But Supreme never stopped believing.',
+        'Behind the scenes, members held on to one thing—grit and resilience, the very qualities symbolized by the eagle in our logo. Instead of giving up, they prepared. They learned. They re-strategized. They built themselves quietly for the right moment.',
+        'That moment came in 2017.',
+        'In their first major comeback that year, the Supreme Masquerade Society shocked the community with a massive turnout—over 1,000 members proudly marching together. It was a powerful sign of what determination, unity, and preparation can achieve.',
+        'From being counted out to becoming one of the strongest masquerade societies, Supreme’s story is a testament to perseverance and transformation. Every setback shaped the legacy, and every comeback grew stronger.',
+      ],
+    },
   },
   anniversary: {
     theme: 'My Community, My Responsibility',
@@ -168,7 +180,7 @@ export const aboutContent = {
       year: 2024,
       theme: 'Unity Through Tradition',
       description: 'The 2024 collection celebrates our 25th anniversary by honoring the unity that has sustained us through decades of cultural preservation. Each outfit reflects the strength of our community bonds and the timeless traditions that connect us across generations.',
-      image: '/assets/hero/gallery1.png', // Placeholder - replace with actual outfit image
+      image: '/assets/hero/2024outfit.png',
       highlights: [
         'Traditional patterns merged with contemporary design',
         'Colors representing unity and celebration',
@@ -179,7 +191,7 @@ export const aboutContent = {
       year: 2023,
       theme: 'Heritage Reimagined',
       description: 'Drawing from ancestral wisdom, the 2023 designs reimagine classic masquerade elements with modern flair, creating a bridge between past and present.',
-      image: '/assets/hero/gallery2.png', // Placeholder - replace with actual outfit image
+      image: '/assets/hero/2023outfit.png',
       highlights: [
         'Ancient mask motifs with contemporary interpretations',
         'Sustainable materials honoring our connection to nature',
